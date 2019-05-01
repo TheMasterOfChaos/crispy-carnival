@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/offersItem"
+        android:icon="@drawable/ic_offers_item"
+        android:title="@string/offersItemTitle" />
+    <item
+        android:id="@+id/myOrdersItem"
+        android:icon="@drawable/ic_my_orders_item"
+        android:title="@string/myOrdersItemTitle" />
+    <item
+
+        android:id="@+id/currentOrderItem"
+        android:icon="@drawable/ic_current_order"
+        android:title="@string/currentOrderItemTitle" />
+    <item
+        android:id="@+id/completedOrdersItem"
+        android:icon="@drawable/ic_completed_orders_item"
+        android:title="@string/completedOrdersItem" />
+</menu>

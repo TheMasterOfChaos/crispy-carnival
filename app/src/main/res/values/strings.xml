@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Test Name</string>
+    <string name="offersItemTitle">Предложения</string>
+    <string name="myOrdersItemTitle">Мои заказы</string>
+    <string name="currentOrderItemTitle">Текущий</string>
+    <string name="completedOrdersItem">Завершённые</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
