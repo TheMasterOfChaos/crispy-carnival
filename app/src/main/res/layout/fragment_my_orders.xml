@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".OffersFragment">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/offers_fragment_title"
+        android:id="@+id/my_orders_fragment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/offers_title"
+        android:text="@string/my_orders_title"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/offers_fragment_title"
+        app:layout_constraintStart_toEndOf="@+id/my_orders_fragment_title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <carbon.widget.EditText
@@ -50,8 +49,8 @@
         android:hint="@string/search_button"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/offers_fragment_title"
-        app:layout_constraintTop_toBottomOf="@+id/offers_fragment_title" />
+        app:layout_constraintStart_toStartOf="@+id/my_orders_fragment_title"
+        app:layout_constraintTop_toBottomOf="@+id/my_orders_fragment_title" />
 
     <TextView
         android:id="@+id/textView2"

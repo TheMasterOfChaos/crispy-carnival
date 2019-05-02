@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">Test Name</string>
-    <string name="offersItemTitle">Предложения</string>
-    <string name="myOrdersItemTitle">Мои заказы</string>
-    <string name="currentOrderItemTitle">Текущий</string>
-    <string name="completedOrdersItem">Завершённые</string>
+    <string name="offers_title">Предложения</string>
+    <string name="my_orders_title">Мои заказы</string>
+    <string name="current_order_title">Текущий</string>
+    <string name="completed_orders_title">Завершённые</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exit_button">Выход</string>
+    <string name="search_button">Поиск</string>
+    <string name="sort_button_title">сортировка</string>
+    <string name="static_sort_part">Сортировка по&#160;</string>
+    <string name="dynamic_sort_name">названию</string>
 </resources>

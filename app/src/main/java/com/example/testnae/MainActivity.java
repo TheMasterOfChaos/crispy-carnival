@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,5 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkAuthStatus() {
         //TODO проверка статуса аутинтификации, и запуск активности для аутинтификации
+    }
+
+
+    public void logout(View view) {
     }
 }
