@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyOrdersFragmen extends Fragment {
+public class MyOrdersFragment extends Fragment {
 
 
-    public MyOrdersFragmen() {
+    public MyOrdersFragment() {
         // Required empty public constructor
     }
 

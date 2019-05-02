@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
         mainNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                //TODO выбор фрагментов
+                /*switch (menuItem){
+                    case findViewById()
+                }*/
                 return false;
             }
         });
