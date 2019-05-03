@@ -4,12 +4,11 @@
     <item>
 
         <shape android:shape="rectangle" >
-            <size android:height="40dp" />
             <solid
                 android:color="#ffffff"/>
             <stroke
                 android:color="#68a3e2"
-                android:width="1dp"/>
+                android:width="1dp"/>+++
             <corners android:radius="10dp" />
         </shape>
 
