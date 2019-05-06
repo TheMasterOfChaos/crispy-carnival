@@ -6,4 +6,175 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
+    <Button
+        android:id="@+id/submitButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient"
+        android:text="Выехал на погрузку"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvActivityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Детализация заказа"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvActivityTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvActivityTitle"
+        app:srcCompat="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/tvOrderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Холодильник"
+        android:textColor="@color/blueDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="32dp" />
+
+    <TextView
+        android:id="@+id/tvOrderPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13000 ₽"
+        android:textColor="@color/blueDark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvOrderTitle"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/tvOrderTitle" />
+
+    <TextView
+        android:id="@+id/tvPointsStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Всего точек: "
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrderTitle" />
+
+    <TextView
+        android:id="@+id/tvPointsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textColor="@color/blueMiddle"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPointsStatic"
+        app:layout_constraintStart_toEndOf="@+id/tvPointsStatic"
+        app:layout_constraintTop_toTopOf="@+id/tvPointsStatic" />
+
+    <TextView
+        android:id="@+id/tvDateStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дата оформления: "
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvPointsStatic" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 Октября 2001 г. 00:00"
+        android:textColor="@color/blueMiddle"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDateStatic"
+        app:layout_constraintStart_toEndOf="@+id/tvDateStatic"
+        app:layout_constraintTop_toTopOf="@+id/tvDateStatic" />
+
+    <TextView
+        android:id="@+id/tvPaymentMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Способ Оплаты"
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateStatic" />
+
+    <TextView
+        android:id="@+id/tvCardMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Безнал"
+        android:textColor="@color/blueDark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/cardIc"
+        app:layout_constraintTop_toBottomOf="@+id/tvPaymentMethod" />
+
+    <TextView
+        android:id="@+id/tvCashMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Наличные"
+        android:textColor="@color/greyMiddle"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/tvCardMethod" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/detailRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvCardMethod" />
+
+    <ImageView
+        android:id="@+id/cardIc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/tvCardMethod"
+        app:srcCompat="@drawable/ic_card" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        app:layout_constraintStart_toEndOf="@+id/tvCardMethod"
+        app:layout_constraintTop_toTopOf="@+id/tvCashMethod"
+        app:srcCompat="@drawable/ic_cash" />
+
 </android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.testnae;
+package com.example.testname;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.testnae.specialClasses.Order;
+import com.example.testname.specialClasses.Order;
 
 import java.util.List;
 
@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     final Fragment offersFragment = new OffersFragment();
     final Fragment myOrdersFragment = new MyOrdersFragment();
-    //final Fragment fragment3 = new NotificationsFragment();
-    //final Fragment fragment3 = new NotificationsFragment();
+    final Fragment currentOrderFragment = new CurrentOrderFragment();
+    final Fragment completedOrdersFragment = new CompletedOrdersFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = offersFragment;
 
@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        //fm.beginTransaction().add(R.id.main_container, fragment3, "3").hide(fragment3).commit();
+        fm.beginTransaction().add(R.id.main_container, currentOrderFragment, "3").hide(currentOrderFragment).commit();
+        fm.beginTransaction().add(R.id.main_container, completedOrdersFragment, "3").hide(completedOrdersFragment).commit();
         fm.beginTransaction().add(R.id.main_container, myOrdersFragment, "2")
                 .hide(myOrdersFragment).commit();
         fm.beginTransaction().add(R.id.main_container, offersFragment, "1").commit();
@@ -80,7 +80,14 @@ public class MainActivity extends AppCompatActivity {
                                 fm.beginTransaction().hide(active).show(myOrdersFragment).commit();
                                 active = myOrdersFragment;
                                 return true;
-
+                            case R.id.currentOrderItem:
+                                fm.beginTransaction().hide(active).show(currentOrderFragment).commit();
+                                active = currentOrderFragment;
+                                return true;
+                            case R.id.completedOrdersItem:
+                                fm.beginTransaction().hide(active).show(completedOrdersFragment).commit();
+                                active = completedOrdersFragment;
+                                return true;
                         }
                         return false;
                     }

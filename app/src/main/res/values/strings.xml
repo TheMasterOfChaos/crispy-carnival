@@ -3,6 +3,8 @@
     <string name="offers_title">Предложения</string>
     <string name="my_orders_title">Мои заказы</string>
     <string name="current_order_title">Текущий</string>
+    <string name="current_order_fragment_title">Текущий заказ</string>
+
     <string name="completed_orders_title">Завершённые</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -12,4 +14,5 @@
     <string name="sort_button_title">сортировка</string>
     <string name="static_sort_part">Сортировка по&#160;</string>
     <string name="dynamic_sort_name">названию</string>
+    <string name="completed_orders_fragment_title">Завершенные \nзаказы</string>
 </resources>

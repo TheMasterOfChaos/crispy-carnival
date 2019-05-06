@@ -1,13 +1,135 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<carbon.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.testname.CurrentOrderFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/current_orders_fragment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/current_order_fragment_title"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:drawableStart="@drawable/ic_logout_button"
+        android:text="@string/exit_button"
+        android:textColor="#FF0000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCurrentOrderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Тапочек"
+        android:textAlignment="viewStart"
+        android:textColor="@color/blueDark"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/current_orders_fragment_title"
+        app:layout_constraintTop_toBottomOf="@+id/current_orders_fragment_title" />
+
+    <TextView
+        android:id="@+id/tvOrderPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13 000 ₽"
+        android:textColor="@color/blueDark"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCurrentOrderName"
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/tvCurrentOrderName" />
+
+    <TextView
+        android:id="@+id/tvPointCountStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Всего точек: "
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toStartOf="@+id/tvCurrentOrderName"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentOrderName" />
+
+    <TextView
+        android:id="@+id/tvPointsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textColor="@color/blueDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPointCountStatic"
+        app:layout_constraintStart_toEndOf="@+id/tvPointCountStatic"
+        app:layout_constraintTop_toTopOf="@+id/tvPointCountStatic" />
+
+    <TextView
+        android:id="@+id/tvOrdersDateStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дата оформления: "
+        android:textColor="@color/blueLight"
+        app:layout_constraintStart_toStartOf="@+id/tvPointCountStatic"
+        app:layout_constraintTop_toBottomOf="@+id/tvPointCountStatic" />
+
+    <TextView
+        android:id="@+id/tvOrdersDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 декабря 2019 г."
+        android:textColor="@color/blueDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvOrdersDateStatic"
+        app:layout_constraintStart_toEndOf="@+id/tvOrdersDateStatic"
+        app:layout_constraintTop_toBottomOf="@+id/tvPointCountStatic" />
+
+    <!--<android.support.v7.widget.RecyclerView
+        android:id="@+id/currentPointsRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrdersDate" />-->
+    <include
+        android:id="@+id/currentPointsRecycler"
+        layout="@layout/detail_order_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvOrderPrice"
+        app:layout_constraintStart_toStartOf="@+id/tvOrdersDateStatic"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrdersDate" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round_gradient"
+        android:text="Прибыл по адресу"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentPointsRecycler" />
+
+
+</carbon.widget.ConstraintLayout>
+

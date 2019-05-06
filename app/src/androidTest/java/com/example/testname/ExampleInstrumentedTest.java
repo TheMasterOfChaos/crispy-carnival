@@ -1,4 +1,4 @@
-package com.example.testnae;
+package com.example.testname;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

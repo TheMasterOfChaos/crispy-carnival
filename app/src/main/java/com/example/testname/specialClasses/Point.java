@@ -1,5 +1,5 @@
 
-package com.example.testnae.specialClasses;
+package com.example.testname.specialClasses;
 
 import java.util.HashMap;
 import java.util.Map;

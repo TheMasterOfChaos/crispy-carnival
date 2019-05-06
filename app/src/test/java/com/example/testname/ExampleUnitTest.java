@@ -1,4 +1,4 @@
-package com.example.testnae;
+package com.example.testname;
 
 import org.junit.Test;
 

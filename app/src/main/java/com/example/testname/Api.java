@@ -1,6 +1,6 @@
-package com.example.testnae;
+package com.example.testname;
 
-import com.example.testnae.specialClasses.Order;
+import com.example.testname.specialClasses.Order;
 
 import java.util.List;
 

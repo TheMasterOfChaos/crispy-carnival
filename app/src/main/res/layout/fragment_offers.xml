@@ -42,7 +42,7 @@
         android:background="@drawable/round_corner"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:textColorHint="@color/greyHint"
+        android:textColorHint="@color/greyMiddle"
         android:drawableStart="@drawable/ic_search"
         app:carbon_elevation="12dp"
         app:carbon_elevationShadowColor="#0000ff"

@@ -43,7 +43,7 @@
         android:paddingEnd="6dp"
         android:drawableStart="@drawable/ic_search"
         android:hint="@string/search_button"
-        android:textColorHint="@color/greyHint"
+        android:textColorHint="@color/greyMiddle"
         app:carbon_elevation="12dp"
         app:carbon_elevationShadowColor="#68a3e2"
         app:layout_constraintEnd_toEndOf="@+id/button"
