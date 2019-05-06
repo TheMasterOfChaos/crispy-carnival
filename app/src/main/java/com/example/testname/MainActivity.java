@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView mainNavigationView = findViewById(R.id.main_navigation_view);
 
-        /*retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl("http://176.53.160.19/api/") //Базовая часть адреса
                 .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
                 .build();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<List<Order>> call, Throwable t) {
                 t.printStackTrace();
             }
-        });*/
+        });
 
 
 
