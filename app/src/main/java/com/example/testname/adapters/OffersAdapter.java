@@ -1,5 +1,6 @@
 package com.example.testname;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,6 +40,19 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
     public class OffersViewHolder extends RecyclerView.ViewHolder {
         public OffersViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
+                    itemView.getContext().startActivity(i);
+                }
+            });
         }
     }
+
+    public interface OnOrderClickListener{
+        void onOrderClick(int position);
+    }
+
+
 }

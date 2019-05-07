@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.testname.adapters.OffersAdapter;
 import com.example.testname.specialClasses.Order;
 
 import java.util.ArrayList;
@@ -58,12 +59,15 @@ public class OffersFragment extends Fragment {
                 Log.wtf("TAG", "onResponse: " + response.body().toString());
                 orderList = response.body();
             }
-
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
+        orderList.add(null);
+        orderList.add(null);
+        orderList.add(null);
+        orderList.add(null);
     }
 
 
@@ -73,7 +77,11 @@ public class OffersFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.offers_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         OffersAdapter adapter = new OffersAdapter(orderList);
+
         recyclerView.setAdapter(adapter);
     }
+
+
 }

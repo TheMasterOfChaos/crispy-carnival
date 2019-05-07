@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.testname.fragments.CompletedOrdersFragment;
+import com.example.testname.fragments.CurrentOrderFragment;
+import com.example.testname.fragments.MyOrdersFragment;
+import com.example.testname.fragments.OffersFragment;
 import com.example.testname.specialClasses.Order;
 
 import java.util.List;

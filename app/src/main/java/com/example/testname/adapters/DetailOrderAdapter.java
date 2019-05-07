@@ -33,7 +33,7 @@ public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderAdapter.
 
     @Override
     public int getItemCount() {
-        return 0;
+        return orderList.size();
     }
 
     public class DetailsViewHolder extends RecyclerView.ViewHolder {
