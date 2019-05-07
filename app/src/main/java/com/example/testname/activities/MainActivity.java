@@ -1,4 +1,4 @@
-package com.example.testname;
+package com.example.testname.activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.testname.Api;
+import com.example.testname.R;
 import com.example.testname.fragments.CompletedOrdersFragment;
 import com.example.testname.fragments.CurrentOrderFragment;
 import com.example.testname.fragments.MyOrdersFragment;

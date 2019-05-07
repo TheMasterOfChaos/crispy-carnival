@@ -4,7 +4,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.testname.CompletedOrdersFragment">
+    tools:context="com.example.testname.fragments.CompletedOrdersFragment">
 
     <TextView
         android:id="@+id/completed_orders_fragment_title"

@@ -1,4 +1,4 @@
-package com.example.testname;
+package com.example.testname.fragments;
 
 
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.testname.R;
 
 
 public class CurrentOrderFragment extends Fragment {

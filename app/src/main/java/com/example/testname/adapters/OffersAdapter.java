@@ -1,4 +1,4 @@
-package com.example.testname;
+package com.example.testname.adapters;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.testname.activities.DetailsActivity;
+import com.example.testname.R;
 import com.example.testname.specialClasses.Order;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
 
     private List<Order> orders;
 
-    OffersAdapter(List<Order> orders) {
+    public OffersAdapter(List<Order> orders) {
         this.orders = orders;
     }
 

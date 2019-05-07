@@ -1,4 +1,4 @@
-package com.example.testname;
+package com.example.testname.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.testname.Api;
+import com.example.testname.R;
 import com.example.testname.adapters.OffersAdapter;
 import com.example.testname.specialClasses.Order;
 

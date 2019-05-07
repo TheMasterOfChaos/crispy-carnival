@@ -1,4 +1,4 @@
-package com.example.testname;
+package com.example.testname.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.testname.R;
 import com.example.testname.specialClasses.Order;
 
 import java.util.List;

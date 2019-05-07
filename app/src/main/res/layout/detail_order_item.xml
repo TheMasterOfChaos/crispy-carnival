@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/round_corner">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_corner"
-        android:outlineProvider="background">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/number_background" />
 
         <TextView
             android:id="@+id/tvPointNumber"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:background="@drawable/number_background"
-            android:text="1"
+            android:text=" 1 "
             android:textAlignment="center"
             android:textColor="@color/blueDark"
             android:textSize="24sp"
@@ -28,11 +35,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/tvWhyWeNeedThis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:text="Пункт №1"
             android:textColor="@color/blueDark"
             android:textSize="18sp"
@@ -62,7 +69,6 @@
             android:id="@+id/tvAdressStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Адрес доставки"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -89,7 +95,6 @@
             android:id="@+id/tvPhoneStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Телефон"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -109,7 +114,6 @@
             android:id="@+id/tvPersonStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Контактное лицо"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -129,7 +133,6 @@
             android:id="@+id/tvNotesStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Примечание к заказу"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -137,7 +140,7 @@
 
         <TextView
             android:id="@+id/textView19"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
             app:layout_constraintHorizontal_bias="0.0"
@@ -155,7 +158,6 @@
             android:id="@+id/tvMassStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="Масса"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -165,7 +167,7 @@
             android:id="@+id/tvWidthStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:text="Ширина"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toEndOf="@+id/tvMassStatic"
@@ -175,8 +177,7 @@
             android:id="@+id/tvLengthStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:text="Длина"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toEndOf="@+id/tvHeightStatic"
@@ -186,8 +187,7 @@
             android:id="@+id/tvHeightStatic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:text="Высота"
             android:textColor="@color/blueLight"
             app:layout_constraintStart_toEndOf="@+id/tvWidthStatic"
@@ -224,13 +224,11 @@
             android:id="@+id/tvLength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:text="100км"
             android:textColor="@color/blueMiddle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvLengthStatic"
             app:layout_constraintTop_toBottomOf="@+id/tvLengthStatic" />
 
-    </android.support.constraint.ConstraintLayout>
 
-</android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>
