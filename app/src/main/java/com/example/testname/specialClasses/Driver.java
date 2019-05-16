@@ -15,7 +15,7 @@ public class Driver {
     private String phoneNumber;
     private String contractNumber;
     private String birthDate;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Boolean canWork;
 
     public Integer getId() {
         return id;
@@ -23,6 +23,14 @@ public class Driver {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean getCanWork() {
+        return canWork;
+    }
+
+    public void setCanWork(Boolean canWork) {
+        this.canWork = canWork;
     }
 
     public Object getUserId() {
@@ -89,12 +97,8 @@ public class Driver {
         this.birthDate = birthDate;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+
+
 
 }

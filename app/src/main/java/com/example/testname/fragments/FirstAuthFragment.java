@@ -1,30 +1,90 @@
 package com.example.testname.fragments;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.PhoneNumberUtils;
+import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.example.testnae.R;
+import com.example.testname.R;
+import com.example.testname.activities.AuthActivity;
+import com.example.testname.specialClasses.Order;
+import com.example.testname.specialClasses.PhoneNumber;
+import com.example.testname.specialClasses.Server;
+
+import java.io.IOException;
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FirstAuutFragment extends Fragment {
+public class FirstAuthFragment extends Fragment {
+    public Button submit;
+    public EditText phoneET;
+    public String curNumber;
+    private SharedPreferences preferences;
 
 
-    public FirstAuutFragment() {
+
+    public FirstAuthFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_auut, container, false);
+        return inflater.inflate(R.layout.fragment_first_auth, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        preferences = getActivity().getSharedPreferences("user_data", MODE_PRIVATE);
+
+        submit = view.findViewById(R.id.button4);
+        phoneET = view.findViewById(R.id.phoneET);
+        phoneET.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        Log.wtf("tag", "onViewCreated: lohoh");
+        submit.setOnClickListener(v -> {
+            Editable editable = phoneET.getText();
+            if (editable != null){
+                curNumber = "7" + PhoneNumberUtils.normalizeNumber(editable.toString());
+                Call<ResponseBody> getSMS = Server.api.callSMS(new PhoneNumber(curNumber));
+                getSMS.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                        preferences.edit().putString("phone", curNumber).apply();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.authContainer, new SecondAuthFragment())
+                                .commit();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+            }
+        });
+    }
 }

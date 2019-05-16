@@ -48,7 +48,7 @@
         android:layout_marginTop="32dp"
         android:text="Холодильник"
         android:textColor="@color/blueDark"
-        android:textSize="24sp"
+        android:textSize="@dimen/title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="13000 ₽"
         android:textColor="@color/blueDark"
-        android:textSize="20sp"
+        android:textSize="@dimen/title"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvOrderTitle"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -86,6 +86,7 @@
         android:layout_marginTop="16dp"
         android:text="Всего точек: "
         android:textColor="@color/blueLight"
+        android:textSize="@dimen/description"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvOrderTitle" />
 
@@ -95,6 +96,7 @@
         android:layout_height="wrap_content"
         android:text="5"
         android:textColor="@color/blueMiddle"
+        android:textSize="@dimen/description"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvPointsStatic"
         app:layout_constraintStart_toEndOf="@+id/tvPointsStatic"
@@ -106,6 +108,7 @@
         android:layout_height="wrap_content"
         android:text="Дата оформления: "
         android:textColor="@color/blueLight"
+        android:textSize="@dimen/description"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvPointsStatic" />
 
@@ -115,6 +118,8 @@
         android:layout_height="wrap_content"
         android:text="3 Октября 2001 г. 00:00"
         android:textColor="@color/blueMiddle"
+        android:textSize="@dimen/description"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvDateStatic"
         app:layout_constraintStart_toEndOf="@+id/tvDateStatic"
         app:layout_constraintTop_toTopOf="@+id/tvDateStatic" />
@@ -126,6 +131,7 @@
         android:layout_marginTop="16dp"
         android:text="Способ Оплаты"
         android:textColor="@color/blueLight"
+        android:textSize="@dimen/description"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvDateStatic" />
 

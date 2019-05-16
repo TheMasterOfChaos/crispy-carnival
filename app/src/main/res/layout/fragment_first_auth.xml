@@ -1,13 +1,89 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentOne"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.testname.fragments.FirstAuutFragment">
+    tools:context="com.example.testname.activities.AuthActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneLL"
+        android:background="@drawable/round_corner"
+        android:paddingEnd="6dp"
+        android:paddingStart="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:gravity="center_vertical"
+            android:text="+7 "
+            android:textColor="@color/greyMiddle"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/listDivider" />
+
+        <EditText
+            android:id="@+id/phoneET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:ems="10"
+            android:paddingStart="8dp"
+            android:hint="Номер телефона"
+            android:inputType="phone"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:textColorHint="@color/greyMiddle" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/blue_rectangle"
+        android:text="Получить код"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/phoneLL"
+        app:layout_constraintStart_toStartOf="@+id/phoneLL"
+        app:layout_constraintTop_toBottomOf="@+id/phoneLL" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textView9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Номер будет использован для входа в систему."
+        android:textAlignment="center"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/phoneLL"
+        app:layout_constraintEnd_toEndOf="@+id/phoneLL"
+        app:layout_constraintStart_toStartOf="@+id/phoneLL" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Вход"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9" />
+</android.support.constraint.ConstraintLayout>

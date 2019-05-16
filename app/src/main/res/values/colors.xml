@@ -8,4 +8,5 @@
     <color name="greyMiddle">#b2b2b2</color>
     <color name="greyLight">#e2e2e2</color>
     <color name="blueMiddle">#2e60a4</color>
+    <color name="white">#FFF</color>
 </resources>

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.testname.activities.DetailsActivity;
 import com.example.testname.R;
@@ -31,7 +32,10 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
 
     @Override
     public void onBindViewHolder(@NonNull OffersViewHolder viewHolder, int i) {
-
+        viewHolder.adress.setText(orders.get(i).getBeginDateTime());
+        viewHolder.date.setText(orders.get(i).getBeginDateTime());
+        viewHolder.price.setText(orders.get(i).getCargo().getLength() + " \u20BD");
+        viewHolder.title.setText(orders.get(i).getCargo().getName());
     }
 
     @Override
@@ -40,15 +44,25 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
     }
 
     public class OffersViewHolder extends RecyclerView.ViewHolder {
+        TextView adress;
+        TextView date;
+        TextView price;
+        TextView title;
+
+
+
         public OffersViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
-                    itemView.getContext().startActivity(i);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
+
+                itemView.getContext().startActivity(i);
             });
+            title = itemView.findViewById(R.id.tvTitle);
+            price = itemView.findViewById(R.id.tvPrice);
+            date = itemView.findViewById(R.id.tvDate);
+            adress = itemView.findViewById(R.id.tvAdress);
+
         }
     }
 

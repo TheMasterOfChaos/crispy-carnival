@@ -15,6 +15,7 @@ import com.example.testname.Api;
 import com.example.testname.R;
 import com.example.testname.adapters.OffersAdapter;
 import com.example.testname.specialClasses.Order;
+import com.example.testname.specialClasses.Server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,8 @@ public class OffersFragment extends Fragment {
     Response response;
     private Retrofit retrofit;
     private static Api api;
-    List<Order> orderList;
+    public List<Order> orderList;
+    OffersAdapter adapter;
 
 
 
@@ -41,35 +43,32 @@ public class OffersFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         orderList = new ArrayList<>();
         // Inflate the layout for this fragment
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://176.53.160.19/api/") //Базовая часть адреса
-                .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
-                .build();
-        api = retrofit.create(Api.class);
+
         update();
+
         return inflater.inflate(R.layout.fragment_offers, container, false);
     }
 
     private void update() {
-        api.getOrders().enqueue(new Callback<List<Order>>() {
+        Call<List<Order>> getOrder = Server.api.getOrders(" Token 351aa3d04e354804abd8373beb0de0469292aba6");
+        getOrder.enqueue(new Callback<List<Order>>() {
             @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-                Log.wtf("TAG", "onResponse: " + response.body().toString());
-                orderList = response.body();
+            public void onResponse(Call<List<Order>> call, @NonNull Response<List<Order>> response) {
+                if(response.body() == null) Log.wtf("suka", "onResponse: blyad");
+                orderList.addAll(response.body());
+                adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
-        orderList.add(null);
-        orderList.add(null);
-        orderList.add(null);
-        orderList.add(null);
+
     }
 
 
@@ -80,7 +79,7 @@ public class OffersFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        OffersAdapter adapter = new OffersAdapter(orderList);
+        adapter = new OffersAdapter(orderList);
 
         recyclerView.setAdapter(adapter);
     }
