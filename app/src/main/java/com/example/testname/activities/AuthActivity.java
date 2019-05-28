@@ -12,6 +12,7 @@ import com.example.testname.fragments.FirstAuthFragment;
 import com.example.testname.fragments.ThirdAuthFragment;
 import com.example.testname.specialClasses.Driver;
 import com.example.testname.specialClasses.Server;
+import com.example.testname.specialClasses.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,20 +38,20 @@ public class AuthActivity extends AppCompatActivity {
         }
         else {
             if(!preferences.getBoolean("can_work", true)) {
-                Call<Driver> getDriver = Server.api.getDriver(preferences.getInt("id", -1));
-                getDriver.enqueue(new Callback<Driver>() {
+                Call<User> getDriver = Server.api.getUser(preferences.getInt("id", -1), getSharedPreferences("user_data", MODE_PRIVATE).getString("token",""));
+                getDriver.enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<Driver> call, Response<Driver> response) {
-                        if (!response.body().getCanWork())
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (!response.body().getDriver().getCanWork())
                             fm.beginTransaction().add(R.id.authContainer, thirdFragment).commit();
                         else {
-                            preferences.edit().putBoolean("can_work", response.body().getCanWork()).apply();
+                            preferences.edit().putBoolean("can_work", response.body().getDriver().getCanWork()).apply();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Driver> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
 
                     }
                 });

@@ -1,40 +1,93 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Order {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("customer")
+    @Expose
     private Customer customer;
+    @SerializedName("cargo_template")
+    @Expose
     private Object cargoTemplate;
+    @SerializedName("points")
+    @Expose
     private List<Point> points = null;
+    @SerializedName("vehicle_type")
+    @Expose
     private VehicleType vehicleType;
+    @SerializedName("cargo")
+    @Expose
     private Cargo cargo;
+    @SerializedName("options")
+    @Expose
     private List<Object> options = null;
+    @SerializedName("tariff_value_deliverer")
+    @Expose
     private TariffValueDeliverer tariffValueDeliverer;
+    @SerializedName("tariff_value_customer")
+    @Expose
     private TariffValueCustomer tariffValueCustomer;
+    @SerializedName("vehicle")
+    @Expose
     private Vehicle vehicle;
+    @SerializedName("driver")
+    @Expose
     private Driver driver;
+    @SerializedName("dispatcher_made")
+    @Expose
     private Object dispatcherMade;
+    @SerializedName("begin_date_time")
+    @Expose
     private String beginDateTime;
-    private String finishDateTime;
+    @SerializedName("finish_date_time")
+    @Expose
+    private Object finishDateTime;
+    @SerializedName("actual_start_date_time")
+    @Expose
     private String actualStartDateTime;
+    @SerializedName("order_date_time")
+    @Expose
     private String orderDateTime;
+    @SerializedName("deliverer")
+    @Expose
     private Object deliverer;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("next_point")
+    @Expose
     private Integer nextPoint;
+    @SerializedName("region_type")
+    @Expose
     private Integer regionType;
+    @SerializedName("cost_deliverer")
+    @Expose
     private String costDeliverer;
+    @SerializedName("additional_hour_cost_deliverer")
+    @Expose
     private String additionalHourCostDeliverer;
+    @SerializedName("cost_customer")
+    @Expose
     private String costCustomer;
+    @SerializedName("additional_hour_cost_customer")
+    @Expose
     private String additionalHourCostCustomer;
+    @SerializedName("status")
+    @Expose
     private Integer status;
+    @SerializedName("hours")
+    @Expose
     private Integer hours;
+    @SerializedName("comment")
+    @Expose
     private String comment;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -140,11 +193,11 @@ public class Order {
         this.beginDateTime = beginDateTime;
     }
 
-    public String getFinishDateTime() {
+    public Object getFinishDateTime() {
         return finishDateTime;
     }
 
-    public void setFinishDateTime(String finishDateTime) {
+    public void setFinishDateTime(Object finishDateTime) {
         this.finishDateTime = finishDateTime;
     }
 
@@ -250,14 +303,6 @@ public class Order {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

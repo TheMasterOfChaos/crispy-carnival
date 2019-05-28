@@ -1,42 +1,101 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Customer {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("user_id")
+    @Expose
     private Object userId;
+    @SerializedName("passport_data")
+    @Expose
     private Object passportData;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("manager_comment")
+    @Expose
     private String managerComment;
+    @SerializedName("tax_type")
+    @Expose
     private Integer taxType;
+    @SerializedName("surname")
+    @Expose
     private String surname;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("last_name")
+    @Expose
     private String lastName;
+    @SerializedName("birth_place")
+    @Expose
     private String birthPlace;
+    @SerializedName("birth_date")
+    @Expose
     private String birthDate;
+    @SerializedName("PSRNSP")
+    @Expose
     private String pSRNSP;
+    @SerializedName("organisation")
+    @Expose
     private String organisation;
+    @SerializedName("TIN")
+    @Expose
     private String tIN;
+    @SerializedName("PSRN")
+    @Expose
     private String pSRN;
+    @SerializedName("payment_type")
+    @Expose
     private Integer paymentType;
+    @SerializedName("payment_order")
+    @Expose
     private Integer paymentOrder;
+    @SerializedName("delay")
+    @Expose
     private Integer delay;
+    @SerializedName("discount")
+    @Expose
     private Integer discount;
+    @SerializedName("contract_number")
+    @Expose
     private String contractNumber;
+    @SerializedName("company_address")
+    @Expose
     private String companyAddress;
+    @SerializedName("real_address")
+    @Expose
     private String realAddress;
+    @SerializedName("checking_account")
+    @Expose
     private String checkingAccount;
+    @SerializedName("BIC")
+    @Expose
     private String bIC;
+    @SerializedName("IEC")
+    @Expose
     private String iEC;
+    @SerializedName("bank_name")
+    @Expose
     private String bankName;
+    @SerializedName("corresponding_account")
+    @Expose
     private String correspondingAccount;
+    @SerializedName("contact_name")
+    @Expose
     private String contactName;
+    @SerializedName("phone_number")
+    @Expose
     private String phoneNumber;
+    @SerializedName("email")
+    @Expose
     private String email;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -276,14 +335,6 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

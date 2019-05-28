@@ -1,25 +1,50 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class KYCControl {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("police_registration_date")
+    @Expose
     private Object policeRegistrationDate;
+    @SerializedName("accidents")
+    @Expose
     private Boolean accidents;
+    @SerializedName("manhunt")
+    @Expose
     private Boolean manhunt;
+    @SerializedName("limitations")
+    @Expose
     private Boolean limitations;
+    @SerializedName("OSAGO_data")
+    @Expose
     private String oSAGOData;
+    @SerializedName("pledge")
+    @Expose
     private Object pledge;
+    @SerializedName("true_passport")
+    @Expose
     private Boolean truePassport;
+    @SerializedName("criminal_records")
+    @Expose
     private Boolean criminalRecords;
+    @SerializedName("debts")
+    @Expose
     private Object debts;
+    @SerializedName("FSSP")
+    @Expose
     private String fSSP;
+    @SerializedName("work_access")
+    @Expose
     private Boolean workAccess;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -123,14 +148,6 @@ public class KYCControl {
 
     public void setWorkAccess(Boolean workAccess) {
         this.workAccess = workAccess;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

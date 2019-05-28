@@ -1,22 +1,54 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Cargo {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("mass")
+    @Expose
     private String mass;
+    @SerializedName("length")
+    @Expose
     private String length;
+    @SerializedName("width")
+    @Expose
     private String width;
+    @SerializedName("height")
+    @Expose
     private String height;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("is_template")
+    @Expose
     private Boolean isTemplate;
+    @SerializedName("loading_type")
+    @Expose
     private Object loadingType;
+    @SerializedName("comment")
+    @Expose
     private String comment;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    public void setCargo(Cargo cargo) {
+        this.id = cargo.id;
+        this.mass = cargo.mass;
+        this.length = cargo.length;
+        this.width = cargo.width;
+        this.height = cargo.height;
+        this.companyMadeId = cargo.companyMadeId;
+        this.name = cargo.name;
+        this.isTemplate = cargo.isTemplate;
+        this.loadingType = cargo.loadingType;
+        this.comment = cargo.comment;
+    }
 
     public Integer getId() {
         return id;
@@ -96,14 +128,6 @@ public class Cargo {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

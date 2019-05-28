@@ -1,16 +1,23 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class VehicleType {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("default_cargo")
+    @Expose
     private Object defaultCargo;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("name")
+    @Expose
     private String name;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -42,14 +49,6 @@ public class VehicleType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

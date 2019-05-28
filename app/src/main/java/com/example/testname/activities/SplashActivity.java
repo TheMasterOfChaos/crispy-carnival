@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkAuthStatus() {
         //TODO проверка статуса аутинтификации, и запуск активности для аутинтификации
         if (!preferences.getBoolean("can_drive", false)){
+            Server.token = "Token " + preferences.getString("token", "");
             startActivity(new Intent(this, AuthActivity.class));
         }
         else {

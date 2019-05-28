@@ -24,6 +24,7 @@ import com.example.testname.specialClasses.Driver;
 import com.example.testname.specialClasses.SMSRequest;
 import com.example.testname.specialClasses.SMSResponse;
 import com.example.testname.specialClasses.Server;
+import com.example.testname.specialClasses.User;
 
 import java.util.Objects;
 
@@ -72,13 +73,14 @@ public class SecondAuthFragment extends Fragment {
                     public void onResponse(Call<SMSResponse> call, Response<SMSResponse> response) {
                         preferences.edit().putString("token", response.body().getToken()).apply();
                         preferences.edit().putInt("id", response.body().getId()).apply();
-                        Call<Driver> getDriver = Server.api
-                                .getDriver(response.body().getId());
-                        getDriver.enqueue(new Callback<Driver>() {
+                        Call<User> getDriver = Server.api
+                                .getUser(response.body().getId(), response.body().getToken());
+                        getDriver.enqueue(new Callback<User>() {
                             @Override
-                            public void onResponse(@NonNull Call<Driver> call, @NonNull Response<Driver> response) {
-                                preferences.edit().putBoolean("can_work", response.body().getCanWork()).apply();
-                                if(!response.body().getCanWork()){
+                            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                                preferences.edit().putBoolean("can_work", response.body().getDriver().getCanWork()).apply();
+                                if(!response.body().getDriver().getCanWork()){
+                                    preferences.edit().putInt("driver_id", response.body().getDriver().getId()).apply();
                                     getActivity().getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.authContainer, new SecondAuthFragment())
                                             .commit();
@@ -90,7 +92,7 @@ public class SecondAuthFragment extends Fragment {
                             }
 
                             @Override
-                            public void onFailure(Call<Driver> call, Throwable t) {
+                            public void onFailure(Call<User> call, Throwable t) {
                                 t.printStackTrace();
                             }
                         });

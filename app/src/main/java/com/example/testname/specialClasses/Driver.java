@@ -1,29 +1,41 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Driver {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
-    private Object userId;
-    private PassportData passportData;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
+    @SerializedName("passport_data")
+    @Expose
+    private Object passportData;
+    @SerializedName("KYC_control")
+    @Expose
     private Object kYCControl;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("full_name")
+    @Expose
     private String fullName;
+    @SerializedName("phone_number")
+    @Expose
     private String phoneNumber;
+    @SerializedName("contract_number")
+    @Expose
     private String contractNumber;
-    private String birthDate;
+    @SerializedName("birth_date")
+    @Expose
+    private Object birthDate;
+    @SerializedName("can_work")
+    @Expose
     private Boolean canWork;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Boolean getCanWork() {
         return canWork;
@@ -33,19 +45,27 @@ public class Driver {
         this.canWork = canWork;
     }
 
-    public Object getUserId() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Object userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public PassportData getPassportData() {
+    public Object getPassportData() {
         return passportData;
     }
 
-    public void setPassportData(PassportData passportData) {
+    public void setPassportData(Object passportData) {
         this.passportData = passportData;
     }
 
@@ -89,16 +109,12 @@ public class Driver {
         this.contractNumber = contractNumber;
     }
 
-    public String getBirthDate() {
+    public Object getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Object birthDate) {
         this.birthDate = birthDate;
     }
-
-
-
-
 
 }

@@ -1,17 +1,28 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.os.Parcelable;
 
-public class Point {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+public class Point  {
+
+    @SerializedName("id")
+    @Expose
     private Integer id;
-    private Object arriveDateTime;
+    @SerializedName("arrive_date_time")
+    @Expose
+    private String arriveDateTime;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("location")
+    @Expose
     private String location;
+    @SerializedName("phone_number")
+    @Expose
     private String phoneNumber;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -21,11 +32,11 @@ public class Point {
         this.id = id;
     }
 
-    public Object getArriveDateTime() {
+    public String getArriveDateTime() {
         return arriveDateTime;
     }
 
-    public void setArriveDateTime(Object arriveDateTime) {
+    public void setArriveDateTime(String arriveDateTime) {
         this.arriveDateTime = arriveDateTime;
     }
 
@@ -51,14 +62,6 @@ public class Point {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

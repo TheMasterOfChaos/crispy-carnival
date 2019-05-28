@@ -1,30 +1,61 @@
 
 package com.example.testname.specialClasses;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Vehicle {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
-    private VehicleType vehicleType;
+
+    @SerializedName("options")
+    @Expose
     private List<Object> options = null;
+    @SerializedName("max_cargo_mass")
+    @Expose
     private String maxCargoMass;
+    @SerializedName("length")
+    @Expose
     private String length;
+    @SerializedName("width")
+    @Expose
     private String width;
+    @SerializedName("height")
+    @Expose
     private String height;
+    @SerializedName("KYC_control")
+    @Expose
     private KYCControl kYCControl;
+    @SerializedName("company_made_id")
+    @Expose
     private Integer companyMadeId;
+    @SerializedName("vehicle_number")
+    @Expose
     private String vehicleNumber;
+    @SerializedName("vehicle_class")
+    @Expose
     private Object vehicleClass;
+    @SerializedName("body_type")
+    @Expose
     private Integer bodyType;
+    @SerializedName("special_type")
+    @Expose
     private Object specialType;
+    @SerializedName("vehicle_brand")
+    @Expose
     private String vehicleBrand;
+    @SerializedName("vehicle_model")
+    @Expose
     private String vehicleModel;
+    @SerializedName("vehicle_color")
+    @Expose
     private String vehicleColor;
+    @SerializedName("owner")
+    @Expose
     private String owner;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -34,13 +65,6 @@ public class Vehicle {
         this.id = id;
     }
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
-    }
-
-    public void setVehicleType(VehicleType vehicleType) {
-        this.vehicleType = vehicleType;
-    }
 
     public List<Object> getOptions() {
         return options;
@@ -160,14 +184,6 @@ public class Vehicle {
 
     public void setOwner(String owner) {
         this.owner = owner;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

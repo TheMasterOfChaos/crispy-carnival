@@ -12,6 +12,7 @@ public class Server {
     Response response;
     private Retrofit retrofit;
     public static Api api;
+    public static String token;
     private static  Server ourInstance;
 
     public static void getInstance() {
