@@ -21,6 +21,7 @@ import com.example.testname.R;
 import com.example.testname.activities.AuthActivity;
 import com.example.testname.activities.MainActivity;
 import com.example.testname.specialClasses.Driver;
+import com.example.testname.specialClasses.PhoneNumber;
 import com.example.testname.specialClasses.SMSRequest;
 import com.example.testname.specialClasses.SMSResponse;
 import com.example.testname.specialClasses.Server;
@@ -28,6 +29,7 @@ import com.example.testname.specialClasses.User;
 
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,6 +60,21 @@ public class SecondAuthFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         preferences = getActivity().getSharedPreferences("user_data", MODE_PRIVATE);
         EditText smsCodeET = view.findViewById(R.id.smsCodeET);
+        Button smsError = view.findViewById(R.id.smsError);
+        smsError.setOnClickListener(v -> {
+	        Call<ResponseBody> getSMS = Server.api.callSMS(new PhoneNumber(preferences.getString("phone", "")));
+	        getSMS.enqueue(new Callback<ResponseBody>() {
+		        @Override
+		        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+			
+		        }
+		
+		        @Override
+		        public void onFailure(Call<ResponseBody> call, Throwable t) {
+			
+		        }
+	        });
+        });
         ((TextView) view.findViewById(R.id.numberTV))
                 .setText(((AuthActivity) Objects.requireNonNull(getActivity()))
                 .curNumber);
@@ -73,17 +90,18 @@ public class SecondAuthFragment extends Fragment {
                     public void onResponse(Call<SMSResponse> call, Response<SMSResponse> response) {
                         preferences.edit().putString("token", response.body().getToken()).apply();
                         preferences.edit().putInt("id", response.body().getId()).apply();
-                        Call<User> getDriver = Server.api
+	                    Server.token = " Token " + preferences.getString("token", "");
+	                    Call<User> getDriver = Server.api
                                 .getUser(response.body().getId(), " Token "
                                     + response.body().getToken());
                         getDriver.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                                preferences.edit().putBoolean("can_work", response.body().getDriver().getCanWork()).apply();
-                                if(!response.body().getDriver().getCanWork()){
+                                preferences.edit().putBoolean("can_work", response.body().getDriver().getKYCControl().getWorkAccess()).apply();
+                                if(!response.body().getDriver().getKYCControl().getWorkAccess()){
                                     preferences.edit().putInt("driver_id", response.body().getDriver().getId()).apply();
                                     getActivity().getSupportFragmentManager().beginTransaction()
-                                            .replace(R.id.authContainer, new SecondAuthFragment())
+                                            .replace(R.id.authContainer, new ThirdAuthFragment())
                                             .commit();
                                 }
                                 else {
@@ -98,7 +116,6 @@ public class SecondAuthFragment extends Fragment {
                             }
                         });
                         Log.wtf("tag", "onResponse: " + response.body().getToken());
-                        Toast.makeText(getContext(), response.body().getToken(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

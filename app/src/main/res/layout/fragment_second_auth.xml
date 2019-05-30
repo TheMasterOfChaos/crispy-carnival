@@ -76,4 +76,18 @@
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="@+id/textView11" />
+    
+    <Button
+        android:id="@+id/smsError"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:text="Не приходит код?"
+        android:textColor="@color/blueLight"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/checkSMSCode"
+        app:layout_constraintStart_toStartOf="@+id/checkSMSCode"
+        app:layout_constraintTop_toBottomOf="@+id/checkSMSCode" />
 </android.support.constraint.ConstraintLayout>

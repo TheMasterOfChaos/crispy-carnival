@@ -17,7 +17,7 @@ public class Driver {
     private Object passportData;
     @SerializedName("KYC_control")
     @Expose
-    private Object kYCControl;
+    private KYCControl kYCControl;
     @SerializedName("company_made_id")
     @Expose
     private Integer companyMadeId;
@@ -69,11 +69,11 @@ public class Driver {
         this.passportData = passportData;
     }
 
-    public Object getKYCControl() {
+    public KYCControl getKYCControl() {
         return kYCControl;
     }
 
-    public void setKYCControl(Object kYCControl) {
+    public void setKYCControl(KYCControl kYCControl) {
         this.kYCControl = kYCControl;
     }
 

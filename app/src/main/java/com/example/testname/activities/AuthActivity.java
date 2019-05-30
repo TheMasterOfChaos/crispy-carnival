@@ -38,14 +38,15 @@ public class AuthActivity extends AppCompatActivity {
         }
         else {
             if(!preferences.getBoolean("can_work", true)) {
-                Call<User> getDriver = Server.api.getUser(preferences.getInt("id", -1), getSharedPreferences("user_data", MODE_PRIVATE).getString("token",""));
+                Call<User> getDriver = Server.api.getUser(preferences.getInt("id", -1), " Token "
+                    + getSharedPreferences("user_data", MODE_PRIVATE).getString("token",""));
                 getDriver.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if (!response.body().getDriver().getCanWork())
+                        if (!response.body().getDriver().getKYCControl().getWorkAccess())
                             fm.beginTransaction().add(R.id.authContainer, thirdFragment).commit();
                         else {
-                            preferences.edit().putBoolean("can_work", response.body().getDriver().getCanWork()).apply();
+                            preferences.edit().putBoolean("can_work", response.body().getDriver().getKYCControl().getWorkAccess()).apply();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     }
