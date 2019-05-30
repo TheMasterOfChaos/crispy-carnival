@@ -74,7 +74,8 @@ public class SecondAuthFragment extends Fragment {
                         preferences.edit().putString("token", response.body().getToken()).apply();
                         preferences.edit().putInt("id", response.body().getId()).apply();
                         Call<User> getDriver = Server.api
-                                .getUser(response.body().getId(), response.body().getToken());
+                                .getUser(response.body().getId(), " Token "
+                                    + response.body().getToken());
                         getDriver.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
