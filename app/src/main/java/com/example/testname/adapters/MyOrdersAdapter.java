@@ -1,13 +1,16 @@
 package com.example.testname.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.testname.R;
+import com.example.testname.activities.DetailsActivity;
 import com.example.testname.specialClasses.Order;
 
 import java.util.List;
@@ -53,6 +56,16 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyOrde
         TextView customer;
         public MyOrdersViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                Log.wtf("tag", "OffersViewHolder: " + position);
+                if (position == RecyclerView.NO_POSITION) Log.wtf("tag", "OffersViewHolder: ");
+                Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
+        
+                i.putExtra("order", orders.get(position).getId());
+                i.putExtra("type", 1);
+                itemView.getContext().startActivity(i);
+            });
             customer  = itemView.findViewById(R.id.tvCustomer);
             phone = itemView.findViewById(R.id.tvPhone);
             title = itemView.findViewById(R.id.tvTitle);

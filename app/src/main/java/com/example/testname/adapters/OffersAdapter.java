@@ -61,7 +61,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
                 Log.wtf("tag", "OffersViewHolder: " + position);
                 if (position == RecyclerView.NO_POSITION) Log.wtf("tag", "OffersViewHolder: ");
                 Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
-
+                i.putExtra("type", 0);
                 i.putExtra("order", orders.get(position).getId());
                 itemView.getContext().startActivity(i);
             });

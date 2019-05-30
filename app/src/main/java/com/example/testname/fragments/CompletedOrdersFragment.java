@@ -73,7 +73,8 @@ public class CompletedOrdersFragment extends Fragment {
         Log.wtf("tag", "update: ");
         SharedPreferences preferences = getContext()
             .getSharedPreferences("user_data", MODE_PRIVATE);
-        Call<List<Order>> getOrder = Server.api.getCompletedOrders(preferences.getInt("driver_id", -1)," Token "
+        Call<List<Order>> getOrder = Server.api
+	        .getCompletedOrders(preferences.getInt("driver_id", -1)," Token "
             + preferences.getString("token",""));
         getOrder.enqueue(new Callback<List<Order>>() {
             @Override

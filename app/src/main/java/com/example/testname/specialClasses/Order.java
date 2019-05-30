@@ -88,6 +88,38 @@ public class Order {
     @SerializedName("comment")
     @Expose
     private String comment;
+    
+    public void setOrder(Order order) {
+        this.id = order.id;
+        this.customer = order.customer;
+        this.cargoTemplate = order.cargoTemplate;
+        this.points = order.points;
+        this.vehicleType = order.vehicleType;
+        this.cargo = order.cargo;
+        this.options = order.options;
+        this.tariffValueDeliverer = order.tariffValueDeliverer;
+        this.tariffValueCustomer = order.tariffValueCustomer;
+        this.vehicle = order.vehicle;
+        this.driver = order.driver;
+        this.dispatcherMade = order.dispatcherMade;
+        this.beginDateTime = order.beginDateTime;
+        this.finishDateTime = order.finishDateTime;
+        this.actualStartDateTime = order.actualStartDateTime;
+        this.orderDateTime = order.orderDateTime;
+        this.deliverer = order.deliverer;
+        this.companyMadeId = order.companyMadeId;
+        this.nextPoint = order.nextPoint;
+        this.regionType = order.regionType;
+        this.costDeliverer = order.costDeliverer;
+        this.additionalHourCostDeliverer = order.additionalHourCostDeliverer;
+        this.costCustomer = order.costCustomer;
+        this.additionalHourCostCustomer = order.additionalHourCostCustomer;
+        this.status = order.status;
+        this.hours = order.hours;
+        this.comment = order.comment;
+    }
+    
+    
 
     public Integer getId() {
         return id;

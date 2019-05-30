@@ -1,6 +1,8 @@
 package com.example.testname.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,33 +14,32 @@ import com.example.testname.specialClasses.Cargo;
 import com.example.testname.specialClasses.Order;
 import com.example.testname.specialClasses.Point;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderAdapter.DetailsViewHolder> {
+public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrderAdapter.FullDetailsViewHolder> {
 	
 	Order order;
-	List<Point> pointList = new ArrayList<>();
+	List<Point> pointList;
 	Cargo cargo;
 	
-	public DetailOrderAdapter(Order order, List<Point> pointList, Cargo cargo) {
+	public FullDetailOrderAdapter(Order order, List<Point> pointList, Cargo cargo) {
 		this.pointList = pointList;
 		this.cargo = cargo;
 		this.order = order;
 	}
 	
-	
-	
 	@NonNull
 	@Override
-	public DetailsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.detail_order_item,
+	public FullDetailsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.full_detail_order_item,
 			viewGroup, false);
-		return new DetailsViewHolder(v);
+		return new FullDetailsViewHolder(v);
 	}
 	
+	
+	
 	@Override
-	public void onBindViewHolder(@NonNull DetailsViewHolder detailsViewHolder, int i) {
+	public void onBindViewHolder(@NonNull FullDetailsViewHolder detailsViewHolder, int i) {
 		detailsViewHolder.length.setText(cargo.getLength());
 		detailsViewHolder.width.setText(cargo.getWidth());
 		detailsViewHolder.height.setText(cargo.getHeight());
@@ -47,6 +48,8 @@ public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderAdapter.
 		detailsViewHolder.adres.setText(pointList.get(i).getLocation());
 		detailsViewHolder.number.setText(Integer.valueOf(i + 1).toString() + "");
 		detailsViewHolder.title.setText("Пункт №" + (i + 1));
+		detailsViewHolder.phone.setText(pointList.get(i).getPhoneNumber());
+		detailsViewHolder.name.setText(order.getCustomer().getName());
 		detailsViewHolder.notes.setText(order.getComment());
 	}
 	
@@ -55,10 +58,24 @@ public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderAdapter.
 		return pointList.size();
 	}
 	
-	public class DetailsViewHolder extends RecyclerView.ViewHolder {
-		TextView date, adres, mass, height, width, length, notes, number, title;
-		public DetailsViewHolder(@NonNull View itemView) {
+	public class FullDetailsViewHolder extends RecyclerView.ViewHolder {
+		TextView
+			date,
+			adres,
+			mass,
+			height,
+			width,
+			length,
+			notes,
+			number,
+			title,
+			phone,
+			name;
+		
+		public FullDetailsViewHolder(@NonNull View itemView) {
 			super(itemView);
+			name = itemView.findViewById(R.id.tvPerson);
+			phone = itemView.findViewById(R.id.tvPhone);
 			number = itemView.findViewById(R.id.tvPointNumber);
 			date = itemView.findViewById(R.id.tvDate);
 			adres = itemView.findViewById(R.id.tvAdress);
@@ -68,6 +85,7 @@ public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderAdapter.
 			length = itemView.findViewById(R.id.tvLength);
 			notes = itemView.findViewById(R.id.tvNotes);
 			title = itemView.findViewById(R.id.tvWhyWeNeedThis);
+			
 		}
 		
 	}
