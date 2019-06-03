@@ -33,7 +33,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
 
     @Override
     public void onBindViewHolder(@NonNull OffersViewHolder viewHolder, int i) {
-        viewHolder.adress.setText(orders.get(i).getPoints().get(0).getLocation());
+        viewHolder.address.setText(orders.get(i).getPoints().get(0).getLocation());
         viewHolder.date.setText(orders.get(i).getBeginDateTime());
         viewHolder.price.setText(orders.get(i).getCostDeliverer() + " \u20BD");
         viewHolder.title.setText(orders.get(i).getCargo().getName());
@@ -46,7 +46,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
     }
 
     public class OffersViewHolder extends RecyclerView.ViewHolder {
-        TextView adress;
+        TextView address;
         TextView date;
         TextView price;
         TextView title;
@@ -68,7 +68,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
             title = itemView.findViewById(R.id.tvTitle);
             price = itemView.findViewById(R.id.tvPrice);
             date = itemView.findViewById(R.id.tvDate);
-            adress = itemView.findViewById(R.id.tvAdress);
+            address = itemView.findViewById(R.id.tvAddress);
 
         }
     }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.testname.R;
 import com.example.testname.fragments.FirstAuthFragment;
@@ -53,7 +54,7 @@ public class AuthActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-
+                        Toast.makeText(getApplicationContext(),"Нет сети",Toast.LENGTH_LONG).show();
                     }
                 });
             }

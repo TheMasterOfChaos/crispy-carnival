@@ -1,6 +1,388 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-	xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-	android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/cardView2"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="8dp"
+	>
+	
+	<TextView
+		android:id="@+id/tvCurrentOrderName"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Тапочек"
+		android:textAlignment="viewStart"
+		android:textColor="@color/blueDark"
+		android:textSize="28sp"
+		android:textStyle="bold"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+	
+	<TextView
+		android:id="@+id/tvOrderPrice"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="8dp"
+		android:text="13 000 ₽"
+		android:textColor="@color/blueDark"
+		android:textSize="28sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/tvCurrentOrderName"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/tvCurrentOrderName" />
+	
+	<TextView
+		android:id="@+id/tvPointCountStatic"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="12dp"
+		android:text="Всего точек: "
+		android:textColor="@color/blueLight"
+		android:textSize="@dimen/description"
+		app:layout_constraintStart_toStartOf="@+id/tvCurrentOrderName"
+		app:layout_constraintTop_toBottomOf="@+id/tvCurrentOrderName" />
+	
+	<TextView
+		android:id="@+id/tvPointsCount"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="5"
+		android:textColor="@color/blueDark"
+		android:textSize="@dimen/description"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/tvPointCountStatic"
+		app:layout_constraintStart_toEndOf="@+id/tvPointCountStatic"
+		app:layout_constraintTop_toTopOf="@+id/tvPointCountStatic" />
+	
+	<TextView
+		android:id="@+id/tvOrdersDateStatic"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Дата оформления: "
+		android:textColor="@color/blueLight"
+		android:textSize="@dimen/description"
+		app:layout_constraintStart_toStartOf="@+id/tvPointCountStatic"
+		app:layout_constraintTop_toBottomOf="@+id/tvPointCountStatic" />
+	
+	<TextView
+		android:id="@+id/tvOrdersDate"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="3 декабря 2019 г."
+		android:textColor="@color/blueDark"
+		android:textSize="@dimen/description"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/tvOrdersDateStatic"
+		app:layout_constraintStart_toEndOf="@+id/tvOrdersDateStatic"
+		app:layout_constraintTop_toBottomOf="@+id/tvPointCountStatic" />
+	
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/currentPointsRecycler"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:background="@drawable/round_corner"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/tvOrdersDate">
+		
+		<TextView
+			android:id="@+id/tvPointNumber"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="12dp"
+			android:background="@drawable/number_background"
+			android:text=" 1 "
+			android:textAlignment="center"
+			android:textColor="@color/blueDark"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toStartOf="@+id/guideline3"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		
+		<TextView
+			android:id="@+id/tvWhyWeNeedThis"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Пункт №1"
+			android:textColor="@color/blueDark"
+			android:textSize="@dimen/title"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toTopOf="@+id/tvPointNumber" />
+		
+		<android.support.constraint.Guideline
+			android:id="@+id/guideline3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_begin="40dp" />
+		
+		<TextView
+			android:id="@+id/tvDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="13 апреля 2017 г. 21:45"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvWhyWeNeedThis" />
+		
+		<TextView
+			android:id="@+id/tvaddressStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="12dp"
+			android:includeFontPadding="false"
+			android:text="Адрес доставки"
+			
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+		
+		<android.support.constraint.Guideline
+			android:id="@+id/guideline5"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_begin="56dp" />
+		
+		<TextView
+			android:id="@+id/tvAddress"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			android:text="г. Москва, д. 4"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvaddressStatic" />
+		
+		<TextView
+			android:id="@+id/tvPhoneStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			
+			android:includeFontPadding="false"
+			android:text="Телефон"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+		
+		<TextView
+			android:id="@+id/tvPhone"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			
+			android:text="+7 (926) 388-11-11"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvPhoneStatic" />
+		
+		<TextView
+			android:id="@+id/tvPersonStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			
+			android:layout_marginTop="4dp"
+			android:includeFontPadding="false"
+			android:text="Контактное лицо"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+		
+		<TextView
+			android:id="@+id/tvPerson"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			android:text="Дайнерис Таргариен"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvPersonStatic" />
+		
+		<TextView
+			android:id="@+id/tvNotesStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			
+			android:includeFontPadding="false"
+			android:text="Примечание к заказу"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvPerson" />
+		
+		<TextView
+			android:id="@+id/tvNotes"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			android:textColor="@color/blueMiddle"
+			
+			app:layout_constraintEnd_toStartOf="@+id/guideline6"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvNotesStatic" />
+		
+		<android.support.constraint.Guideline
+			android:id="@+id/guideline6"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_end="56dp" />
+		
+		<TextView
+			android:id="@+id/tvMassStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			
+			android:text="Масса"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toStartOf="@+id/guideline5"
+			app:layout_constraintTop_toBottomOf="@+id/tvNotes" />
+		
+		<TextView
+			android:id="@+id/tvWidthStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:includeFontPadding="false"
+			
+			android:text="Ширина"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toEndOf="@+id/tvMassStatic"
+			app:layout_constraintTop_toTopOf="@+id/tvMassStatic" />
+		
+		<TextView
+			android:id="@+id/tvLengthStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:includeFontPadding="false"
+			
+			android:text="Длина"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toEndOf="@+id/tvHeightStatic"
+			app:layout_constraintTop_toBottomOf="@+id/tvNotes" />
+		
+		<TextView
+			android:id="@+id/tvHeightStatic"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			
+			android:layout_marginStart="8dp"
+			android:includeFontPadding="false"
+			android:text="Высота"
+			android:textColor="@color/blueLight"
+			android:textSize="@dimen/description"
+			app:layout_constraintStart_toEndOf="@+id/tvWidthStatic"
+			app:layout_constraintTop_toBottomOf="@+id/tvNotes" />
+		
+		<TextView
+			android:id="@+id/tvMass"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			
+			android:text="500кг"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@+id/tvMassStatic"
+			app:layout_constraintTop_toBottomOf="@+id/tvMassStatic" />
+		
+		<TextView
+			android:id="@+id/tvWidth"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			
+			android:text="1мм"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@+id/tvWidthStatic"
+			app:layout_constraintTop_toBottomOf="@+id/tvWidthStatic" />
+		
+		<TextView
+			android:id="@+id/tvHeight"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			
+			android:text="0.5мм"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@+id/tvHeightStatic"
+			app:layout_constraintTop_toBottomOf="@+id/tvHeightStatic" />
+		
+		<TextView
+			android:id="@+id/tvLength"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			
+			android:includeFontPadding="false"
+			android:text="100км"
+			android:textColor="@color/blueMiddle"
+			android:textSize="@dimen/main_info"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="@+id/tvLengthStatic"
+			app:layout_constraintTop_toBottomOf="@+id/tvLengthStatic" />
+		
+		<View
+			android:id="@+id/divider"
+			android:layout_width="0dp"
+			android:layout_height="1dp"
+			android:layout_marginTop="4dp"
+			android:layout_marginEnd="8dp"
+			android:background="?android:attr/listDivider"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="@+id/tvPointNumber"
+			app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+	</android.support.constraint.ConstraintLayout>
+	<Button
+		android:id="@+id/button3"
+		android:layout_width="185dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="32dp"
+		android:layout_marginEnd="8dp"
+		android:background="@drawable/round_gradient"
+		android:text="Прибыл по адресу"
+		android:textColor="#FFFFFF"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/currentPointsRecycler" />
+
 
 </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.testname.R;
 import com.example.testname.adapters.OffersAdapter;
@@ -54,7 +55,7 @@ public class OffersFragment extends Fragment {
     return inflater.inflate(R.layout.fragment_offers, container, false);
   }
 
-  private void update() {
+  public void update() {
     Log.wtf("tag", "update: ");
     Call<List<Order>> getOrder = Server.api.getOrders(" Token "
             + getContext()
@@ -74,6 +75,7 @@ public class OffersFragment extends Fragment {
 
       @Override
       public void onFailure(Call<List<Order>> call, Throwable t) {
+        Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
         t.printStackTrace();
       }
     });

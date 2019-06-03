@@ -1,8 +1,6 @@
 package com.example.testname.adapters;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +76,7 @@ public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrder
 			phone = itemView.findViewById(R.id.tvPhone);
 			number = itemView.findViewById(R.id.tvPointNumber);
 			date = itemView.findViewById(R.id.tvDate);
-			adres = itemView.findViewById(R.id.tvAdress);
+			adres = itemView.findViewById(R.id.tvAddress);
 			mass = itemView.findViewById(R.id.tvMass);
 			height = itemView.findViewById(R.id.tvHeight);
 			width = itemView.findViewById(R.id.tvWidth);

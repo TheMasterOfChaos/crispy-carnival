@@ -17,7 +17,7 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:drawableStart="@drawable/ic_logout_button"
+        android:onClick="logout"
         android:text="@string/exit_button"
         android:textColor="#FF0000"
         android:textSize="12sp"

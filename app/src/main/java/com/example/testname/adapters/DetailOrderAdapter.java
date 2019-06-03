@@ -61,7 +61,7 @@ public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderAdapter.
 			super(itemView);
 			number = itemView.findViewById(R.id.tvPointNumber);
 			date = itemView.findViewById(R.id.tvDate);
-			adres = itemView.findViewById(R.id.tvAdress);
+			adres = itemView.findViewById(R.id.tvAddress);
 			mass = itemView.findViewById(R.id.tvMass);
 			height = itemView.findViewById(R.id.tvHeight);
 			width = itemView.findViewById(R.id.tvWidth);

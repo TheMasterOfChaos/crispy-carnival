@@ -1,5 +1,7 @@
 package com.example.testname.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.support.design.widget.BottomNavigationView;
@@ -17,18 +19,22 @@ import com.example.testname.fragments.OffersFragment;
 
 public class MainActivity extends AppCompatActivity {
 	
-	final Fragment offersFragment = new OffersFragment();
-	final Fragment myOrdersFragment = new MyOrdersFragment();
-	final Fragment currentOrderFragment = new CurrentOrderFragment();
-	final Fragment completedOrdersFragment = new CompletedOrdersFragment();
+	final OffersFragment offersFragment = new OffersFragment();
+	final MyOrdersFragment myOrdersFragment = new MyOrdersFragment();
+	final CurrentOrderFragment currentOrderFragment = new CurrentOrderFragment();
+	final CompletedOrdersFragment completedOrdersFragment = new CompletedOrdersFragment();
 	final FragmentManager fm = getSupportFragmentManager();
-	Fragment active = offersFragment;
+	public static Fragment active;
+	
+	SharedPreferences preferences;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		active = offersFragment;
+		preferences = getSharedPreferences("user_data", MODE_PRIVATE);
 		
 		fm.beginTransaction().add(R.id.main_container, currentOrderFragment, "3")
 			.hide(currentOrderFragment).commit();
@@ -46,18 +52,25 @@ public class MainActivity extends AppCompatActivity {
 					case R.id.offersItem:
 						fm.beginTransaction().hide(active).show(offersFragment).commit();
 						active = offersFragment;
+						offersFragment.update();
 						return true;
 					
 					case R.id.myOrdersItem:
 						fm.beginTransaction().hide(active).show(myOrdersFragment).commit();
 						active = myOrdersFragment;
+						myOrdersFragment.update();
 						return true;
+						
 					case R.id.currentOrderItem:
 						fm.beginTransaction().hide(active).show(currentOrderFragment).commit();
+						currentOrderFragment.cpv.init();
 						active = currentOrderFragment;
 						return true;
+						
 					case R.id.completedOrdersItem:
 						fm.beginTransaction().hide(active).show(completedOrdersFragment).commit();
+						completedOrdersFragment.update();
+						
 						active = completedOrdersFragment;
 						return true;
 					
@@ -73,6 +86,17 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	public void logout(View view) {
+		preferences.edit()
+			.clear()
+			.apply();
+		
+		startActivity(new Intent(this, AuthActivity.class));
+		onStop();
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
 	}
 	
 	

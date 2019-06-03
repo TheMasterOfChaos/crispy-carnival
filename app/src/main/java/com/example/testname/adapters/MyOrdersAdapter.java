@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.testname.R;
 import com.example.testname.activities.DetailsActivity;
+import com.example.testname.activities.MainActivity;
+import com.example.testname.fragments.CompletedOrdersFragment;
 import com.example.testname.specialClasses.Order;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyOrde
 
     @Override
     public void onBindViewHolder(@NonNull MyOrdersViewHolder viewHolder, int i) {
-        viewHolder.adress.setText(orders.get(i).getPoints().get(0).getLocation());
+        viewHolder.address.setText(orders.get(i).getPoints().get(0).getLocation());
         viewHolder.date.setText(orders.get(i).getBeginDateTime());
         viewHolder.price.setText(orders.get(i).getCostDeliverer() + " \u20BD");
         viewHolder.title.setText(orders.get(i).getCargo().getName());
@@ -48,7 +50,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyOrde
     }
 
     public class MyOrdersViewHolder extends RecyclerView.ViewHolder {
-        TextView adress;
+        TextView address;
         TextView date;
         TextView price;
         TextView title;
@@ -56,6 +58,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyOrde
         TextView customer;
         public MyOrdersViewHolder(@NonNull View itemView) {
             super(itemView);
+            if((MainActivity.active.getClass()) != CompletedOrdersFragment.class){
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 Log.wtf("tag", "OffersViewHolder: " + position);
@@ -66,12 +69,13 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyOrde
                 i.putExtra("type", 1);
                 itemView.getContext().startActivity(i);
             });
+            }
             customer  = itemView.findViewById(R.id.tvCustomer);
             phone = itemView.findViewById(R.id.tvPhone);
             title = itemView.findViewById(R.id.tvTitle);
             price = itemView.findViewById(R.id.tvPrice);
             date = itemView.findViewById(R.id.tvDate);
-            adress = itemView.findViewById(R.id.tvAdress);
+            address = itemView.findViewById(R.id.tvAddress);
         }
     }
 }

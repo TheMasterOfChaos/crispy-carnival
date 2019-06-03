@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvWhyWeNeedThis" />
 
     <TextView
-        android:id="@+id/tvAdressStatic"
+        android:id="@+id/tvaddressStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -76,7 +76,7 @@
         app:layout_constraintGuide_begin="56dp" />
 
     <TextView
-        android:id="@+id/tvAdress"
+        android:id="@+id/tvAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
@@ -85,7 +85,7 @@
         android:textSize="@dimen/main_info"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/tvAdressStatic" />
+        app:layout_constraintTop_toBottomOf="@+id/tvaddressStatic" />
 
     <TextView
         android:id="@+id/tvNotesStatic"
@@ -98,7 +98,7 @@
         android:textColor="@color/blueLight"
         android:textSize="@dimen/description"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/tvAdress" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
     
     <TextView
         android:id="@+id/tvNotes"

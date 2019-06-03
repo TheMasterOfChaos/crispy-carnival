@@ -94,10 +94,15 @@ public class SecondAuthFragment extends Fragment {
 	                    Call<User> getDriver = Server.api
                                 .getUser(response.body().getId(), " Token "
                                     + response.body().getToken());
+	                    Server.id = response.body().getId();
                         getDriver.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                                preferences.edit().putBoolean("can_work", response.body().getDriver().getKYCControl().getWorkAccess()).apply();
+                                preferences.edit()
+	                                .putBoolean("can_work", response.body().getDriver().getKYCControl().getWorkAccess())
+	                                .putInt("driver_id", response.body().getDriver().getId())
+	                                .apply();
+                                Server.driverID = response.body().getDriver().getId();
                                 if(!response.body().getDriver().getKYCControl().getWorkAccess()){
                                     preferences.edit().putInt("driver_id", response.body().getDriver().getId()).apply();
                                     getActivity().getSupportFragmentManager().beginTransaction()
@@ -120,6 +125,7 @@ public class SecondAuthFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<SMSResponse> call, Throwable t) {
+	                    Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
 
                     }
                 });

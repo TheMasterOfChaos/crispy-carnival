@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.testname.R;
 import com.example.testname.specialClasses.PhoneNumber;
@@ -76,6 +77,8 @@ public class FirstAuthFragment extends Fragment {
 
           @Override
           public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+            Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
+  
             t.printStackTrace();
           }
         });
