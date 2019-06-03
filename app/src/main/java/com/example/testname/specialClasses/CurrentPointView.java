@@ -87,7 +87,7 @@ public class CurrentPointView extends ConstraintLayout {
 		inflate(getContext(), R.layout.current_order_view, this);
 		Cargo cargo = order.getCargo();
 		List<Point> pointList = order.getPoints();
-		int i = order.getNextPoint() - 1;
+		int i = order.getNextPoint();
 		name = findViewById(R.id.tvPerson);
 		phone = findViewById(R.id.tvPhone);
 		number = findViewById(R.id.tvPointNumber);
@@ -117,7 +117,7 @@ public class CurrentPointView extends ConstraintLayout {
 		name.setText(order.getCustomer().getName());
 		notes.setText(order.getComment());
 		price.setText(order.getCostDeliverer() + "\u20BD");
-		pointsCount.setText(order.getPoints().size());
+		pointsCount.setText(order.getPoints().size() + "");
 		cargoName.setText(cargo.getName());
 		button.setOnClickListener(v ->{
 			HashMap<String, String> id = new HashMap<>();

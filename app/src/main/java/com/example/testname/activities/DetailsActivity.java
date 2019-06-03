@@ -86,7 +86,7 @@ public class DetailsActivity extends AppCompatActivity {
 		submitBtn = findViewById(R.id.submitButton);
 		
 		acceptOrder = v -> {
-			Call<User> getDriver = Server.api.getUser(preferences.getInt("id", -1), Server.token);
+			Call<User> getDriver = Server.api.getUser(Server.id, Server.token);
 			getDriver.enqueue(new Callback<User>() {
 				@Override
 				public void onResponse(Call<User> call, Response<User> response) {
