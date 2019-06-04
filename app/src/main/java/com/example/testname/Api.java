@@ -1,6 +1,5 @@
 package com.example.testname;
 
-import com.example.testname.specialClasses.Driver;
 import com.example.testname.specialClasses.Order;
 import com.example.testname.specialClasses.PhoneNumber;
 import com.example.testname.specialClasses.SMSRequest;
@@ -9,11 +8,9 @@ import com.example.testname.specialClasses.User;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

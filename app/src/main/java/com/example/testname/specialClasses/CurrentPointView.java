@@ -132,7 +132,6 @@ public class CurrentPointView extends ConstraintLayout {
 				@Override
 				public void onFailure(Call<ResponseBody> call, Throwable t) {
 					Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
-					
 				}
 			});
 		});
