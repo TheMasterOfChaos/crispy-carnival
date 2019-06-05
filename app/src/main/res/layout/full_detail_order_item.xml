@@ -153,7 +153,7 @@
 	
 	<TextView
 		android:id="@+id/tvNotes"
-		android:layout_width="wrap_content"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:includeFontPadding="false"
 		android:textColor="@color/blueMiddle"
@@ -174,8 +174,9 @@
 		android:id="@+id/tvMassStatic"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:includeFontPadding="false"
+		android:layout_marginTop="4dp"
 		
+		android:includeFontPadding="false"
 		android:text="Масса"
 		android:textColor="@color/blueLight"
 		android:textSize="@dimen/description"
@@ -200,8 +201,9 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
-		android:includeFontPadding="false"
+		android:layout_marginTop="4dp"
 		
+		android:includeFontPadding="false"
 		android:text="Длина"
 		android:textColor="@color/blueLight"
 		android:textSize="@dimen/description"
@@ -214,6 +216,7 @@
 		android:layout_height="wrap_content"
 		
 		android:layout_marginStart="8dp"
+		android:layout_marginTop="4dp"
 		android:includeFontPadding="false"
 		android:text="Высота"
 		android:textColor="@color/blueLight"
