@@ -14,6 +14,7 @@ import com.example.testname.activities.DetailsActivity;
 import com.example.testname.activities.MainActivity;
 import com.example.testname.fragments.CompletedOrdersFragment;
 import com.example.testname.specialClasses.Order;
+import com.example.testname.specialClasses.TimeFormater;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyOrde
     @Override
     public void onBindViewHolder(@NonNull MyOrdersViewHolder viewHolder, int i) {
         viewHolder.address.setText(orders.get(i).getPoints().get(0).getLocation());
-        viewHolder.date.setText(orders.get(i).getBeginDateTime());
+        viewHolder.date.setText(TimeFormater.format(orders.get(i).getBeginDateTime()));
         viewHolder.price.setText(orders.get(i).getCostDeliverer() + " \u20BD");
         viewHolder.title.setText(orders.get(i).getCargo().getName());
         viewHolder.phone.setText(orders.get(i).getCustomer().getPhoneNumber());

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,12 +67,13 @@ public class CurrentPointView extends ConstraintLayout {
 			public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
 				if(response.body().size() != 0){
 					order = response.body().get(0);
-					fetchOrder();
-					
+					if (order.getNextPoint() == order.getPoints().size())
+						changeButton();
+					else
+						fetchOrder();
 				}
 				else {
 					fetchNoOrder();
-					
 				}
 			}
 			
@@ -81,6 +83,48 @@ public class CurrentPointView extends ConstraintLayout {
 			}
 		});
 		
+	}
+	
+	private void changeButton() {
+		
+		inflate(getContext(), R.layout.current_order_view, this);
+		Cargo cargo = order.getCargo();
+		List<Point> pointList = order.getPoints();
+		int i = order.getNextPoint();
+		name = findViewById(R.id.tvPerson);
+		phone = findViewById(R.id.tvPhone);
+		number = findViewById(R.id.tvPointNumber);
+		date = findViewById(R.id.tvDate);
+		address = findViewById(R.id.tvAddress);
+		mass = findViewById(R.id.tvMass);
+		height = findViewById(R.id.tvHeight);
+		width = findViewById(R.id.tvWidth);
+		length = findViewById(R.id.tvLength);
+		notes = findViewById(R.id.tvNotes);
+		title = findViewById(R.id.tvWhyWeNeedThis);
+		allDate = findViewById(R.id.tvOrdersDate);
+		cargoName = findViewById(R.id.tvCurrentOrderName);
+		pointsCount = findViewById(R.id.tvPointsCount);
+		price = findViewById(R.id.tvOrderPrice);
+		button = findViewById(R.id.button3);
+		
+		button.setText("Завершить заказ");
+		button.setOnClickListener(v ->{
+			HashMap<String, String> id = new HashMap<>();
+			id.put("order_id", order.getId() + "");
+			Call<ResponseBody> r = Server.api.nextPoint(id, Server.token);
+			r.enqueue(new Callback<ResponseBody>() {
+				@Override
+				public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+					init();
+				}
+				
+				@Override
+				public void onFailure(Call<ResponseBody> call, Throwable t) {
+					Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
+				}
+			});
+		});
 	}
 	
 	private void fetchOrder() {

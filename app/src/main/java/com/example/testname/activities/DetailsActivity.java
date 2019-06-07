@@ -1,6 +1,7 @@
 package com.example.testname.activities;
 
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -74,39 +75,40 @@ public class DetailsActivity extends AppCompatActivity {
 		
 		preferences = getSharedPreferences("user_data", MODE_PRIVATE);
 		
-		tvPointNumber = ((TextView) findViewById(R.id.tvPointsCount));
-		tvDate = ((TextView) findViewById(R.id.tvDate));
-		tvPrice = ((TextView) findViewById(R.id.tvOrderPrice));
-		tvOrderName = ((TextView) findViewById(R.id.tvOrderTitle));
-		tvCash = ((TextView) findViewById(R.id.tvCashMethod));
-		tvCard = ((TextView) findViewById(R.id.tvCardMethod));
+		tvPointNumber = findViewById(R.id.tvPointsCount);
+		tvDate = findViewById(R.id.tvDate);
+		tvPrice =  findViewById(R.id.tvOrderPrice);
+		tvOrderName = findViewById(R.id.tvOrderTitle);
+		tvCash = findViewById(R.id.tvCashMethod);
+		tvCard = findViewById(R.id.tvCardMethod);
 		
-		icCard = ((ImageView) findViewById(R.id.cardIc));
-		icCash = ((ImageView) findViewById(R.id.cashIc));
+		icCard = findViewById(R.id.cardIc);
+		icCash = findViewById(R.id.cashIc);
 		submitBtn = findViewById(R.id.submitButton);
 		
 		acceptOrder = v -> {
 			Call<User> getDriver = Server.api.getUser(Server.id, Server.token);
 			getDriver.enqueue(new Callback<User>() {
 				@Override
-				public void onResponse(Call<User> call, Response<User> response) {
+				public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+					assert response.body() != null;
 					detOrder.setDriver(response.body().getDriver());
 					Call<String> r = Server.api.changeOrder(detOrder.getId(), Server.token, detOrder);
 					r.enqueue(new Callback<String>() {
 						@Override
-						public void onResponse(Call<String> call, Response<String> response) {
+						public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 						
 						}
 						
 						@Override
-						public void onFailure(Call<String> call, Throwable t) {
+						public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
 						
 						}
 					});
 				}
 				
 				@Override
-				public void onFailure(Call<User> call, Throwable t) {
+				public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
 				
 				}
 			});
@@ -119,12 +121,12 @@ public class DetailsActivity extends AppCompatActivity {
 			Call<ResponseBody> r = Server.api.nextPoint(id, Server.token);
 			r.enqueue(new Callback<ResponseBody>() {
 				@Override
-				public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+				public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
 				
 				}
 				
 				@Override
-				public void onFailure(Call<ResponseBody> call, Throwable t) {
+				public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
 				
 				}
 			});
@@ -135,7 +137,7 @@ public class DetailsActivity extends AppCompatActivity {
 		call = Server.api.getOrder(orderId, Server.token);
 		call.enqueue(new Callback<Order>() {
 			@Override
-			public void onResponse(Call<Order> call, Response<Order> response) {
+			public void onResponse(@NonNull Call<Order> call, @NonNull Response<Order> response) {
 				
 				Log.wtf("tag", "onResponse: " + response.body().getPoints().get(0).toString());
 				detOrder.setOrder(response.body());

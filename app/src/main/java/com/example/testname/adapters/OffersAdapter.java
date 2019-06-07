@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.testname.activities.DetailsActivity;
 import com.example.testname.R;
 import com.example.testname.specialClasses.Order;
+import com.example.testname.specialClasses.TimeFormater;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
     @Override
     public void onBindViewHolder(@NonNull OffersViewHolder viewHolder, int i) {
         viewHolder.address.setText(orders.get(i).getPoints().get(0).getLocation());
-        viewHolder.date.setText(orders.get(i).getBeginDateTime());
+        viewHolder.date.setText(TimeFormater.format(orders.get(i).getBeginDateTime()));
         viewHolder.price.setText(orders.get(i).getCostDeliverer() + " \u20BD");
         viewHolder.title.setText(orders.get(i).getCargo().getName());
 
@@ -59,7 +60,6 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 Log.wtf("tag", "OffersViewHolder: " + position);
-                if (position == RecyclerView.NO_POSITION) Log.wtf("tag", "OffersViewHolder: ");
                 Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
                 i.putExtra("type", 0);
                 i.putExtra("order", orders.get(position).getId());
