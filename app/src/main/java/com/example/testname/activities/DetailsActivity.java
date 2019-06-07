@@ -22,6 +22,7 @@ import com.example.testname.specialClasses.Cargo;
 import com.example.testname.specialClasses.Order;
 import com.example.testname.specialClasses.Point;
 import com.example.testname.specialClasses.Server;
+import com.example.testname.specialClasses.TimeFormater;
 import com.example.testname.specialClasses.User;
 
 import java.util.ArrayList;
@@ -144,7 +145,7 @@ public class DetailsActivity extends AppCompatActivity {
 				order.addAll(response.body().getPoints());
 				cargo.setCargo(response.body().getCargo());
 				Log.wtf("tag", "onResponse: " + response.body().getCargo().toString());
-				tvDate.setText(detOrder.getBeginDateTime());
+				tvDate.setText(TimeFormater.format(detOrder.getOrderDateTime()));
 				tvPrice.setText(detOrder.getCostDeliverer());
 				tvPointNumber.setText("" + detOrder.getPoints().size());
 				tvOrderName.setText(detOrder.getCargo().getName());
