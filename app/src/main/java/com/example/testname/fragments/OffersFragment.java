@@ -1,7 +1,5 @@
 package com.example.testname.fragments;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,18 +48,13 @@ public class OffersFragment extends Fragment {
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		orderList = new ArrayList<>();
-		// Inflate the layout for this fragment
-		
-		update();
-		
 		return inflater.inflate(R.layout.fragment_offers, container, false);
 	}
 	
 	public void update() {
-		Log.wtf("tag", "update: ");
-		Call<List<Order>> getOrder = Server.api.getOrders(" Token "
-			+ getContext()
-			.getSharedPreferences("user_data", MODE_PRIVATE).getString("token",""));
+		
+		Call<List<Order>> getOrder = Server.api.getOrders(Server.token);
+		
 		getOrder.enqueue(new Callback<List<Order>>() {
 			@Override
 			public void onResponse(Call<List<Order>> call, @NonNull Response<List<Order>> response) {
@@ -73,7 +65,6 @@ public class OffersFragment extends Fragment {
 					}
 				}
 				
-				adapter.notifyDataSetChanged();
 			}
 			
 			@Override
@@ -82,7 +73,7 @@ public class OffersFragment extends Fragment {
 				t.printStackTrace();
 			}
 		});
-		
+		adapter.notifyDataSetChanged();
 	}
 	
 	@Override
@@ -108,6 +99,7 @@ public class OffersFragment extends Fragment {
 		};
 		refreshLayout.setOnRefreshListener(listener);
 		adapter = new OffersAdapter(orderList);
+		update();
 		
 		recyclerView.setAdapter(adapter);
 	}

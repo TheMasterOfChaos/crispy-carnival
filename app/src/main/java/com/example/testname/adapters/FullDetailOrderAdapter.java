@@ -44,7 +44,7 @@ public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrder
 		detailsViewHolder.width.setText(cargo.getWidth());
 		detailsViewHolder.height.setText(cargo.getHeight());
 		detailsViewHolder.mass.setText(cargo.getMass());
-		detailsViewHolder.date.setText(TimeFormater.format(pointList.get(i).getArriveDateTime()));
+		detailsViewHolder.date.setText(TimeFormater.format(order.getOrderDateTime()));
 		detailsViewHolder.adres.setText(pointList.get(i).getLocation());
 		detailsViewHolder.number.setText(Integer.valueOf(i + 1).toString() + "");
 		detailsViewHolder.title.setText("Пункт №" + (i + 1));

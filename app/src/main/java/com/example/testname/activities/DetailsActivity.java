@@ -168,15 +168,18 @@ public class DetailsActivity extends AppCompatActivity {
 			}
 		});
 		
-		Log.wtf("tag", "onCreate: " + detOrder.toString());
 		if(type == 0) {
 			adapter = new DetailOrderAdapter(detOrder, order, cargo);
 			submitBtn.setText("Принять заказ");
 			submitBtn.setOnClickListener(acceptOrder);
 		}
-		else {
+		else  if (type == 1){
 			adapter = new FullDetailOrderAdapter(detOrder, order, cargo);
 			submitBtn.setOnClickListener(startOrder);
+		}
+		else {
+			adapter = new FullDetailOrderAdapter(detOrder, order, cargo);
+			submitBtn.setVisibility(GONE);
 		}
 		RecyclerView recyclerView = findViewById(R.id.detailRecycler);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
