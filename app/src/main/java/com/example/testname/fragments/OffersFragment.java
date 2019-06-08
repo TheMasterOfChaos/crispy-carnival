@@ -19,6 +19,9 @@ import com.example.testname.specialClasses.Server;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,6 +67,7 @@ public class OffersFragment extends Fragment {
 						orderList.add(order);
 					}
 				}
+				getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
 				
 			}
 			
@@ -73,7 +77,6 @@ public class OffersFragment extends Fragment {
 				t.printStackTrace();
 			}
 		});
-		adapter.notifyDataSetChanged();
 	}
 	
 	@Override
@@ -92,11 +95,22 @@ public class OffersFragment extends Fragment {
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		refreshLayout =  view.findViewById(R.id.refresh);
 		refreshLayout.setColorSchemeResources(R.color.blueMiddle);
-		listener = () -> {
-			update();
-			adapter.notifyDataSetChanged();
-			refreshLayout.setRefreshing(false);
-		};
+		
+		listener = () -> (new Timer()).scheduleAtFixedRate(new TimerTask() {
+			
+			@Override
+			public void run() {
+				
+				update();
+				refreshLayout.setRefreshing(false);
+				this.cancel();
+			}
+			
+			@Override
+			public boolean cancel() {
+				return super.cancel();
+			}
+		},3000, 5000);
 		refreshLayout.setOnRefreshListener(listener);
 		adapter = new OffersAdapter(orderList);
 		update();

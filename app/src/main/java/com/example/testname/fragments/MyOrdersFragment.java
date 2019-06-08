@@ -22,6 +22,8 @@ import com.example.testname.specialClasses.Server;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +37,8 @@ public class MyOrdersFragment extends Fragment {
 	SwipeRefreshLayout refreshLayout;
 	List<Order> orderList = new ArrayList<>();
 	MyOrdersAdapter adapter;
+	SwipeRefreshLayout.OnRefreshListener listener;
+	
 	
 	
 	public MyOrdersFragment() {
@@ -63,7 +67,7 @@ public class MyOrdersFragment extends Fragment {
 					}
 				}
 				
-				adapter.notifyDataSetChanged();
+				getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
 			}
 			
 			@Override
@@ -82,16 +86,32 @@ public class MyOrdersFragment extends Fragment {
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		refreshLayout =  view.findViewById(R.id.refresh);
 		refreshLayout.setColorSchemeResources(R.color.blueMiddle);
-		refreshLayout.setOnRefreshListener(() -> {
-			update();
-			adapter.notifyDataSetChanged();
-			refreshLayout.setRefreshing(false);
-		});
+		listener = () -> (new Timer()).scheduleAtFixedRate(new TimerTask() {
+			
+			@Override
+			public void run() {
+				
+				update();
+				refreshLayout.setRefreshing(false);
+				this.cancel();
+			}
+			
+			@Override
+			public boolean cancel() {
+				return super.cancel();
+			}
+		},3000, 5000);
+		refreshLayout.setOnRefreshListener(listener);
 		adapter = new MyOrdersAdapter(orderList);
 		recyclerView.setAdapter(adapter);
 		
 	}
 	
-	
+	@Override
+	public void onResume() {
+		super.onResume();
+		refreshLayout.setRefreshing(true);
+		listener.onRefresh();
+	}
 	
 }

@@ -13,7 +13,6 @@ import com.example.testname.specialClasses.Order;
 import com.example.testname.specialClasses.Point;
 import com.example.testname.specialClasses.TimeFormater;
 
-import java.sql.Time;
 import java.util.List;
 
 public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrderAdapter.FullDetailsViewHolder> {
@@ -45,7 +44,7 @@ public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrder
 		detailsViewHolder.height.setText(cargo.getHeight());
 		detailsViewHolder.mass.setText(cargo.getMass());
 		detailsViewHolder.date.setText(TimeFormater.format(order.getOrderDateTime()));
-		detailsViewHolder.adres.setText(pointList.get(i).getLocation());
+		detailsViewHolder.address.setText(pointList.get(i).getLocation());
 		detailsViewHolder.number.setText(Integer.valueOf(i + 1).toString() + "");
 		detailsViewHolder.title.setText("Пункт №" + (i + 1));
 		detailsViewHolder.phone.setText(pointList.get(i).getPhoneNumber());
@@ -61,7 +60,7 @@ public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrder
 	public class FullDetailsViewHolder extends RecyclerView.ViewHolder {
 		TextView
 			date,
-			adres,
+			address,
 			mass,
 			height,
 			width,
@@ -78,7 +77,7 @@ public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrder
 			phone = itemView.findViewById(R.id.tvPhone);
 			number = itemView.findViewById(R.id.tvPointNumber);
 			date = itemView.findViewById(R.id.tvDate);
-			adres = itemView.findViewById(R.id.tvAddress);
+			address = itemView.findViewById(R.id.tvAddress);
 			mass = itemView.findViewById(R.id.tvMass);
 			height = itemView.findViewById(R.id.tvHeight);
 			width = itemView.findViewById(R.id.tvWidth);

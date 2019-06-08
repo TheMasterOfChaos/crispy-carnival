@@ -90,7 +90,7 @@ public class CurrentPointView extends ConstraintLayout {
 		inflate(getContext(), R.layout.current_order_view, this);
 		Cargo cargo = order.getCargo();
 		List<Point> pointList = order.getPoints();
-		int i = order.getNextPoint();
+		int i = order.getNextPoint() - 1;
 		name = findViewById(R.id.tvPerson);
 		phone = findViewById(R.id.tvPhone);
 		number = findViewById(R.id.tvPointNumber);
@@ -107,6 +107,21 @@ public class CurrentPointView extends ConstraintLayout {
 		pointsCount = findViewById(R.id.tvPointsCount);
 		price = findViewById(R.id.tvOrderPrice);
 		button = findViewById(R.id.button3);
+		length.setText(cargo.getLength());
+		width.setText(cargo.getWidth());
+		height.setText(cargo.getHeight());
+		mass.setText(cargo.getMass());
+		date.setText(pointList.get(i).getArriveDateTime());
+		address.setText(pointList.get(i).getLocation());
+		number.setText(Integer.valueOf(i + 1).toString() + "");
+		title.setText("Пункт №" + (i + 1));
+		phone.setText(pointList.get(i).getPhoneNumber());
+		name.setText(order.getCustomer().getName());
+		notes.setText(order.getComment());
+		price.setText(order.getCostDeliverer() + "\u20BD");
+		pointsCount.setText(order.getPoints().size() + "");
+		cargoName.setText(cargo.getName());
+		button.setBackgroundResource(R.drawable.red_gradient);
 		
 		button.setText("Завершить заказ");
 		button.setOnClickListener(v ->{
@@ -124,6 +139,8 @@ public class CurrentPointView extends ConstraintLayout {
 					Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
 				}
 			});
+			
+			
 		});
 	}
 	
@@ -148,12 +165,13 @@ public class CurrentPointView extends ConstraintLayout {
 		pointsCount = findViewById(R.id.tvPointsCount);
 		price = findViewById(R.id.tvOrderPrice);
 		button = findViewById(R.id.button3);
+		button.setBackgroundResource(R.drawable.round_gradient);
 		
 		length.setText(cargo.getLength());
 		width.setText(cargo.getWidth());
 		height.setText(cargo.getHeight());
 		mass.setText(cargo.getMass());
-		date.setText(pointList.get(i).getArriveDateTime());
+		date.setText(TimeFormater.format(order.getOrderDateTime()));
 		address.setText(pointList.get(i).getLocation());
 		number.setText(Integer.valueOf(i + 1).toString() + "");
 		title.setText("Пункт №" + (i + 1));
@@ -167,7 +185,9 @@ public class CurrentPointView extends ConstraintLayout {
 			HashMap<String, String> id = new HashMap<>();
 			id.put("order_id", order.getId() + "");
 			Call<ResponseBody> r = Server.api.nextPoint(id, Server.token);
-			r.enqueue(new Callback<ResponseBody>() {
+			button.setText("Уехал с точки");
+			button.setBackgroundResource(R.drawable.green_gradient);
+			button.setOnClickListener(v2 -> r.enqueue(new Callback<ResponseBody>() {
 				@Override
 				public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 					init();
@@ -177,7 +197,7 @@ public class CurrentPointView extends ConstraintLayout {
 				public void onFailure(Call<ResponseBody> call, Throwable t) {
 					Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
 				}
-			});
+			}));
 		});
 	}
 	

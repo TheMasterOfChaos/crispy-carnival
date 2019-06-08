@@ -53,7 +53,7 @@ public interface Api {
 	Call<List<Order>> getOrders(@Header("Authorization") String token);
 	
 	@Headers({"Content-Type: application/json"})
-	@GET("order?is_finished=0&is_current=0")
+	@GET("order?status=1")
 	Call<List<Order>> getMyOrders(@Query("driver") int id,
 	                              @Header("Authorization") String token);
 	
