@@ -1,5 +1,7 @@
 package com.example.testname;
 
+import com.example.testname.specialClasses.Deliverer;
+import com.example.testname.specialClasses.Driver;
 import com.example.testname.specialClasses.Order;
 import com.example.testname.specialClasses.PhoneNumber;
 import com.example.testname.specialClasses.SMSRequest;
@@ -38,6 +40,11 @@ public interface Api {
 	                   @Header("Authorization") String token);
 	
 	@Headers({"Content-Type: application/json"})
+	@GET("driver/{id}")
+	Call<Driver> getDriver(@Path("id") int request,
+	                     @Header("Authorization") String token);
+	
+	@Headers({"Content-Type: application/json"})
 	@GET("order/{id}")
 	Call<Order> getOrder(@Path("id") int request,
 	                     @Header("Authorization") String token);
@@ -72,5 +79,9 @@ public interface Api {
 	Call<List<Order>> getCurrentOrder(@Query("driver") int id,
 	                                  @Header("Authorization") String token);
 	
+	@Headers({"Content-Type: application/json"})
+	@GET("deliverer/{id}")
+	Call<Deliverer> getDeliverer(@Path("id") int id,
+	                             @Header("Authorization") String token);
 	
 }

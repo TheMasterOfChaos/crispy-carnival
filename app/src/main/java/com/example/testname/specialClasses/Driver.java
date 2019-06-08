@@ -5,7 +5,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Driver {
-
+    
+    
+    @SerializedName("deliverer_id")
+    @Expose
+    private Integer delivererId;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -116,5 +120,12 @@ public class Driver {
     public void setBirthDate(Object birthDate) {
         this.birthDate = birthDate;
     }
-
+    
+    public Integer getDelivererId() {
+        return delivererId;
+    }
+    
+    public void setDelivererId(Integer delivererId) {
+        this.delivererId = delivererId;
+    }
 }

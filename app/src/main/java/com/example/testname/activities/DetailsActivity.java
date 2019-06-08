@@ -1,8 +1,10 @@
 package com.example.testname.activities;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,11 +21,14 @@ import com.example.testname.adapters.DetailOrderAdapter;
 
 import com.example.testname.adapters.FullDetailOrderAdapter;
 import com.example.testname.specialClasses.Cargo;
+import com.example.testname.specialClasses.Deliverer;
+import com.example.testname.specialClasses.Driver;
 import com.example.testname.specialClasses.Order;
 import com.example.testname.specialClasses.Point;
 import com.example.testname.specialClasses.Server;
 import com.example.testname.specialClasses.TimeFormater;
 import com.example.testname.specialClasses.User;
+import com.example.testname.specialClasses.Vehicle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,11 +43,13 @@ import static android.view.View.*;
 
 public class DetailsActivity extends AppCompatActivity {
 	List<Point> order = new ArrayList<>();
+	List<Vehicle> vehicles = new ArrayList<>();
 	Order detOrder = new Order();
 	Cargo cargo = new Cargo();
 	Call<Order> call;
-	
+	List<String> names = new ArrayList<>();
 	Button submitBtn;
+	
 	
 	RecyclerView.Adapter adapter;
 	
@@ -88,32 +95,39 @@ public class DetailsActivity extends AppCompatActivity {
 		submitBtn = findViewById(R.id.submitButton);
 		
 		acceptOrder = v -> {
-			Call<User> getDriver = Server.api.getUser(Server.id, Server.token);
-			getDriver.enqueue(new Callback<User>() {
-				@Override
-				public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-					assert response.body() != null;
-					detOrder.setDriver(response.body().getDriver());
-					Call<String> r = Server.api.changeOrder(detOrder.getId(), Server.token, detOrder);
-					r.enqueue(new Callback<String>() {
+			AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
+			builder.setTitle("Выберете транспорт")
+				.setItems( names.toArray(new String[names.size()]), (dialog, which) -> {
+					Call<User> getDriver = Server.api.getUser(Server.id, Server.token);
+					getDriver.enqueue(new Callback<User>() {
 						@Override
-						public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-						
+						public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+							assert response.body() != null;
+							detOrder.setDriver(response.body().getDriver());
+							detOrder.setVehicle(vehicles.get(which));
+							Call<String> r = Server.api.changeOrder(detOrder.getId(), Server.token, detOrder);
+							r.enqueue(new Callback<String>() {
+								@Override
+								public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+								}
+								
+								@Override
+								public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+								
+								}
+							});
 						}
 						
 						@Override
-						public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+						public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
 						
 						}
 					});
-				}
-				
-				@Override
-				public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-				
-				}
-			});
-			onBackPressed();
+					onBackPressed();
+				});
+			AlertDialog alert = builder.create();
+			alert.show();
+			
 			
 		};
 		startOrder = v -> {
@@ -140,11 +154,9 @@ public class DetailsActivity extends AppCompatActivity {
 			@Override
 			public void onResponse(@NonNull Call<Order> call, @NonNull Response<Order> response) {
 				
-				Log.wtf("tag", "onResponse: " + response.body().getPoints().get(0).toString());
 				detOrder.setOrder(response.body());
 				order.addAll(response.body().getPoints());
 				cargo.setCargo(response.body().getCargo());
-				Log.wtf("tag", "onResponse: " + response.body().getCargo().toString());
 				tvDate.setText(TimeFormater.format(detOrder.getOrderDateTime()));
 				tvPrice.setText(detOrder.getCostDeliverer());
 				tvPointNumber.setText("" + detOrder.getPoints().size());
@@ -167,7 +179,33 @@ public class DetailsActivity extends AppCompatActivity {
 				
 			}
 		});
-		
+		Server.api.getDriver(Server.driverID, Server.token).enqueue(new Callback<Driver>() {
+			@Override
+			public void onResponse(Call<Driver> call, Response<Driver> response) {
+				Server.api.getDeliverer(response.body().getDelivererId(), Server.token).enqueue(new Callback<Deliverer>() {
+					@Override
+					public void onResponse(@NonNull Call<Deliverer> call, @NonNull Response<Deliverer> response) {
+						for (Vehicle v:response.body().getVehicles()) {
+							if (v.getVehicleType().getId().equals(detOrder.getVehicleType().getId())){
+								names.add(v.getVehicleBrand() + " " + v.getVehicleNumber());
+								vehicles.add(v);
+							}
+						}
+						Log.d("tag", "onResponse: " + names.size());
+					}
+					
+					@Override
+					public void onFailure(Call<Deliverer> call, Throwable t) {
+						Log.wtf("wtfwtfwtfwtf", "onFailure: ", t);
+					}
+				});
+			}
+			
+			@Override
+			public void onFailure(Call<Driver> call, Throwable t) {
+			
+			}
+		});
 		if(type == 0) {
 			adapter = new DetailOrderAdapter(detOrder, order, cargo);
 			submitBtn.setText("Принять заказ");
