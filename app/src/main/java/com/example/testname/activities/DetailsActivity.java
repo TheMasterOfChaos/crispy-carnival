@@ -13,10 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testname.R;
+import com.example.testname.adapters.AlertVehicleAdapter;
 import com.example.testname.adapters.DetailOrderAdapter;
 
 import com.example.testname.adapters.FullDetailOrderAdapter;
@@ -97,7 +99,7 @@ public class DetailsActivity extends AppCompatActivity {
 		acceptOrder = v -> {
 			AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
 			builder.setTitle("Выберете транспорт")
-				.setItems( names.toArray(new String[names.size()]), (dialog, which) -> {
+				.setAdapter(new AlertVehicleAdapter(this, vehicles), (dialog, which) -> {
 					Call<User> getDriver = Server.api.getUser(Server.id, Server.token);
 					getDriver.enqueue(new Callback<User>() {
 						@Override
@@ -187,7 +189,6 @@ public class DetailsActivity extends AppCompatActivity {
 					public void onResponse(@NonNull Call<Deliverer> call, @NonNull Response<Deliverer> response) {
 						for (Vehicle v:response.body().getVehicles()) {
 							if (v.getVehicleType().getId().equals(detOrder.getVehicleType().getId())){
-								names.add(v.getVehicleBrand() + " " + v.getVehicleNumber());
 								vehicles.add(v);
 							}
 						}
