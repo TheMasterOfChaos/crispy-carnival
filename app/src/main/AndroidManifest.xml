@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.testname">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.AuthActivity"/>
-        <activity
-            android:name=".activities.SplashActivity"
-            android:theme="@style/Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.DetailsActivity" />
-        <activity android:name=".activities.MainActivity" />
-    </application>
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.example.testname">
+	
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.QUICKBOOT_POWERON" />
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme"
+		android:usesCleartextTraffic="true"
+		tools:ignore="GoogleAppIndexingWarning">
+		
+		<service
+			android:name="com.example.testname.OffersUpdateService" />
+		
+		<receiver android:name=".receivers.AlarmReceiver" />
+		<receiver android:name=".receivers.AlarmBootReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="android.intent.action.QUICKBOOT_POWERON" />
+				<action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+				<action android:name="android.intent.action.REBOOT" />
+			</intent-filter>
+		</receiver>
+		
+		<activity android:name=".activities.AuthActivity" />
+		<activity
+			android:name=".activities.SplashActivity"
+			android:theme="@style/Splash">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".activities.DetailsActivity" />
+		<activity android:name=".activities.MainActivity" />
+	</application>
 
 </manifest>

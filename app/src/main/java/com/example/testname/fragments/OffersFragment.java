@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +31,7 @@ import retrofit2.Response;
 public class OffersFragment extends Fragment {
 	
 	
-	public List<Order> orderList;
+	public static List<Order> orderList = new ArrayList<>();
 	OffersAdapter adapter;
 	SwipeRefreshLayout refreshLayout;
 	SwipeRefreshLayout.OnRefreshListener listener;

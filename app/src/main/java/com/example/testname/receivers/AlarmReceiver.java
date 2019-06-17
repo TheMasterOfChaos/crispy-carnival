@@ -1,4 +1,4 @@
-package com.example.testname;
+package com.example.testname.receivers;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.testname.R;
 import com.example.testname.activities.SplashActivity;
 import com.example.testname.specialClasses.NotificationHelper;
 
@@ -25,7 +26,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 		intentToRepeat.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		PendingIntent pendingIntent =
 			PendingIntent.getActivity(context, 0, intentToRepeat, PendingIntent.FLAG_CANCEL_CURRENT);
-		Log.d("tagtagtag", "onReceive: " + pendingIntent.toString());
 		//Создаём уведомление
 		Notification repeatedNotification = buildLocalNotification(context, pendingIntent).build();
 		//Отправляем уведомление

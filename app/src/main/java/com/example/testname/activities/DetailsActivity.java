@@ -197,7 +197,6 @@ public class DetailsActivity extends AppCompatActivity {
 					
 					@Override
 					public void onFailure(Call<Deliverer> call, Throwable t) {
-						Log.wtf("wtfwtfwtfwtf", "onFailure: ", t);
 					}
 				});
 			}
