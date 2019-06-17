@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	package="com.example.testname">
+	package="com.galichfactory.souzgruz">
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -18,10 +18,10 @@
 		tools:ignore="GoogleAppIndexingWarning">
 		
 		<service
-			android:name="com.example.testname.OffersUpdateService" />
+			android:name="com.galichfactory.souzgruz.OffersUpdateService" />
 		
-		<receiver android:name=".receivers.AlarmReceiver" />
-		<receiver android:name=".receivers.AlarmBootReceiver">
+		<receiver android:name="com.galichfactory.souzgruz.receivers.AlarmReceiver" />
+		<receiver android:name="com.galichfactory.souzgruz.receivers.AlarmBootReceiver">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 				<action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -30,9 +30,9 @@
 			</intent-filter>
 		</receiver>
 		
-		<activity android:name=".activities.AuthActivity" />
+		<activity android:name="com.galichfactory.souzgruz.activities.AuthActivity" />
 		<activity
-			android:name=".activities.SplashActivity"
+			android:name="com.galichfactory.souzgruz.activities.SplashActivity"
 			android:theme="@style/Splash">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -40,8 +40,8 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".activities.DetailsActivity" />
-		<activity android:name=".activities.MainActivity" />
+		<activity android:name="com.galichfactory.souzgruz.activities.DetailsActivity" />
+		<activity android:name="com.galichfactory.souzgruz.activities.MainActivity" />
 	</application>
 
 </manifest>
