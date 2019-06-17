@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Driver {
     
+    public Driver(Integer id) {
+        this.id = id;
+    }
     
     @SerializedName("deliverer_id")
     @Expose

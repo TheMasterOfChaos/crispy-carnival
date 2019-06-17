@@ -127,7 +127,6 @@ public class SecondAuthFragment extends Fragment {
                                 t.printStackTrace();
                             }
                         });
-                        Log.wtf("tag", "onResponse: " + response.body().getToken());
                     }
 
                     @Override

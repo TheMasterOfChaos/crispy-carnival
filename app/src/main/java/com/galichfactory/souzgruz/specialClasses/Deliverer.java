@@ -5,6 +5,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Deliverer {
+	public Deliverer(Integer id) {
+		this.id = id;
+	}
 	
 	@SerializedName("id")
 	@Expose

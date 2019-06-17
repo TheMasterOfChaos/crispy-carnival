@@ -17,6 +17,18 @@ public class OrderApplication {
 	@SerializedName("company_made_id")
 	@Expose
 	private Integer companyMadeId;
+	@SerializedName("vehicle")
+	@Expose
+	private Vehicle vehicle;
+	@SerializedName("deliverer")
+	@Expose
+	private Deliverer deliverer;
+	
+	public OrderApplication(Driver driver, Order order, Vehicle vehicle) {
+		this.driver = driver;
+		this.order = order;
+		this.vehicle = vehicle;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -50,4 +62,11 @@ public class OrderApplication {
 		this.companyMadeId = companyMadeId;
 	}
 	
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+	
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
 }

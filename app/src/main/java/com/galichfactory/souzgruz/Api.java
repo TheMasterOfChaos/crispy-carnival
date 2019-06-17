@@ -3,10 +3,12 @@ package com.galichfactory.souzgruz;
 import com.galichfactory.souzgruz.specialClasses.Deliverer;
 import com.galichfactory.souzgruz.specialClasses.Driver;
 import com.galichfactory.souzgruz.specialClasses.Order;
+import com.galichfactory.souzgruz.specialClasses.OrderApplication;
 import com.galichfactory.souzgruz.specialClasses.PhoneNumber;
 import com.galichfactory.souzgruz.specialClasses.SMSRequest;
 import com.galichfactory.souzgruz.specialClasses.SMSResponse;
 import com.galichfactory.souzgruz.specialClasses.User;
+import com.galichfactory.souzgruz.specialClasses.Vehicle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,13 +52,12 @@ public interface Api {
 	                     @Header("Authorization") String token);
 	
 	@Headers({"Content-Type: application/json"})
-	@PATCH("order/{id}")
-	Call<String> changeOrder(@Path("id") int id,
-	                         @Header("Authorization") String token,
-	                         @Body Order order);
+	@POST("order_application")
+	Call<String> changeOrder(@Header("Authorization") String token,
+	                         @Body OrderApplication orderApplication);
 	
 	@Headers({"Content-Type: application/json"})
-	@GET("order?is_preorder=1")
+	@GET("order/unapplied")
 	Call<List<Order>> getOrders(@Header("Authorization") String token);
 	
 	@Headers({"Content-Type: application/json"})

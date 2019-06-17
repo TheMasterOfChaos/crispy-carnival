@@ -24,6 +24,7 @@ import com.galichfactory.souzgruz.specialClasses.Cargo;
 import com.galichfactory.souzgruz.specialClasses.Deliverer;
 import com.galichfactory.souzgruz.specialClasses.Driver;
 import com.galichfactory.souzgruz.specialClasses.Order;
+import com.galichfactory.souzgruz.specialClasses.OrderApplication;
 import com.galichfactory.souzgruz.specialClasses.Point;
 import com.galichfactory.souzgruz.specialClasses.Server;
 import com.galichfactory.souzgruz.specialClasses.TimeFormater;
@@ -105,7 +106,11 @@ public class DetailsActivity extends AppCompatActivity {
 							assert response.body() != null;
 							detOrder.setDriver(response.body().getDriver());
 							detOrder.setVehicle(vehicles.get(which));
-							Call<String> r = Server.api.changeOrder(detOrder.getId(), Server.token, detOrder);
+							Call<String> r = Server.api.changeOrder(
+								Server.token,new OrderApplication(
+								new Driver(response.body().getDriver().getId()),
+								new Order(detOrder.getId()),
+								new Vehicle(vehicles.get(which).getId())));
 							r.enqueue(new Callback<String>() {
 								@Override
 								public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

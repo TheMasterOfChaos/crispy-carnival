@@ -6,6 +6,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Vehicle {
+	public Vehicle(Integer id) {
+		this.id = id;
+	}
 	
 	@SerializedName("id")
 	@Expose

@@ -1,5 +1,6 @@
 package com.galichfactory.souzgruz;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -40,6 +41,7 @@ public class OffersUpdateService extends Service {
 	
 	@Override
 	public void onCreate() {
+		startForeground(1, new Notification());
 		Server.api.getOrders(Server.token).enqueue(new Callback<List<Order>>() {
 			@Override
 			public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {

@@ -6,7 +6,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Order {
-
+    public Order(Integer id) {
+        this.id = id;
+    }
+    
+    public Order() {
+    }
+    
     @SerializedName("id")
     @Expose
     private Integer id;
