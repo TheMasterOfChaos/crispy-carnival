@@ -9,7 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Server {
-	Response response;
 	private Retrofit retrofit;
 	public static Api api;
 	public static String token;

@@ -41,7 +41,18 @@ public class OffersUpdateService extends Service {
 	
 	@Override
 	public void onCreate() {
-		startForeground(1, new Notification());
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				NotificationChannel androidChannel = new NotificationChannel("background",
+					"обновления", NotificationManager.IMPORTANCE_DEFAULT);
+				NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				assert manager != null;
+				manager.createNotificationChannel(androidChannel);
+				startForeground(1, (new Notification.Builder(this, "background").build()));
+				
+			}
+		else {
+			startForeground(1,new Notification());
+			}
 		Server.api.getOrders(Server.token).enqueue(new Callback<List<Order>>() {
 			@Override
 			public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
@@ -98,8 +109,9 @@ public class OffersUpdateService extends Service {
 					}
 				});
 			}
-		},0, 1 * 60 * 1000);
+		},1000, 60 * 1000);
 		super.onCreate();
 	}
+	
 	
 }

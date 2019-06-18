@@ -8,7 +8,6 @@ import com.galichfactory.souzgruz.specialClasses.PhoneNumber;
 import com.galichfactory.souzgruz.specialClasses.SMSRequest;
 import com.galichfactory.souzgruz.specialClasses.SMSResponse;
 import com.galichfactory.souzgruz.specialClasses.User;
-import com.galichfactory.souzgruz.specialClasses.Vehicle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +18,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -54,6 +52,11 @@ public interface Api {
 	@Headers({"Content-Type: application/json"})
 	@POST("order_application")
 	Call<String> changeOrder(@Header("Authorization") String token,
+	                         @Body OrderApplication orderApplication);
+	
+	@Headers({"Content-Type: application/json"})
+	@POST("order_application")
+	Call<String> getOrdersApplication(@Header("Authorization") String token,
 	                         @Body OrderApplication orderApplication);
 	
 	@Headers({"Content-Type: application/json"})

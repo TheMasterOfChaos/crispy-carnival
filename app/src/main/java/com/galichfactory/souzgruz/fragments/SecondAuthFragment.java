@@ -92,10 +92,10 @@ public class SecondAuthFragment extends Fragment {
                         preferences.edit().putString("token", response.body().getToken()).apply();
                         preferences.edit().putInt("id", response.body().getId()).apply();
 	                    Server.token = " Token " + preferences.getString("token", "");
+	                    Server.id = response.body().getId();
 	                    Call<User> getDriver = Server.api
                                 .getUser(response.body().getId(), " Token "
                                     + response.body().getToken());
-	                    Server.id = response.body().getId();
                         getDriver.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
@@ -105,8 +105,7 @@ public class SecondAuthFragment extends Fragment {
 	                                .apply();
                                 Server.driverID = response.body().getDriver().getId();
                                 if(!response.body().getDriver().getKYCControl().getWorkAccess()){
-                                    preferences.edit().putInt("driver_id", response.body().getDriver().getId()).apply();
-                                    getActivity().getSupportFragmentManager().beginTransaction()
+	                                getActivity().getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.authContainer, new ThirdAuthFragment())
                                             .commit();
                                 }
