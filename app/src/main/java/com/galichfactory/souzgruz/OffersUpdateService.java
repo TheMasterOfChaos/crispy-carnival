@@ -66,6 +66,7 @@ public class OffersUpdateService extends Service {
 		});
 		Intent intentToRepeat = new Intent(getApplicationContext(), SplashActivity.class);
 		//настроим флаг для перезапуска приложения
+		
 		intentToRepeat.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		PendingIntent pendingIntent =
 			PendingIntent.getActivity(getApplicationContext(), 0, intentToRepeat,
