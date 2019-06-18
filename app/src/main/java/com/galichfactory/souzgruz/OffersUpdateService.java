@@ -27,9 +27,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OffersUpdateService extends Service {
+public  class OffersUpdateService extends Service {
 	
 	static List<Order> orderList = new ArrayList<>();
+	public static boolean status;
 	
 	public OffersUpdateService() {
 	}
@@ -41,6 +42,7 @@ public class OffersUpdateService extends Service {
 	
 	@Override
 	public void onCreate() {
+		
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				NotificationChannel androidChannel = new NotificationChannel("background",
 					"обновления", NotificationManager.IMPORTANCE_DEFAULT);
@@ -75,7 +77,7 @@ public class OffersUpdateService extends Service {
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				Log.d("tagtagtag", "run: 1234");
+				if (status) onDestroy();
 				Server.api.getOrders(Server.token).enqueue(new Callback<List<Order>>() {
 					@Override
 					public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {

@@ -18,7 +18,9 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true"
-		tools:ignore="GoogleAppIndexingWarning">
+		tools:ignore="GoogleAppIndexingWarning"
+		android:screenOrientation="portrait"
+		>
 		
 		<service
 			android:name="com.galichfactory.souzgruz.OffersUpdateService" />
@@ -33,8 +35,11 @@
 			</intent-filter>
 		</receiver>
 		
-		<activity android:name="com.galichfactory.souzgruz.activities.AuthActivity" />
 		<activity
+			android:screenOrientation="portrait"
+			android:name="com.galichfactory.souzgruz.activities.AuthActivity" />
+		<activity
+			android:screenOrientation="portrait"
 			android:name="com.galichfactory.souzgruz.activities.SplashActivity"
 			android:theme="@style/Splash">
 			<intent-filter>
@@ -43,8 +48,11 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="com.galichfactory.souzgruz.activities.DetailsActivity" />
-		<activity android:name="com.galichfactory.souzgruz.activities.MainActivity" />
+		<activity
+			android:screenOrientation="portrait"
+			android:name="com.galichfactory.souzgruz.activities.DetailsActivity" />
+		<activity android:screenOrientation="portrait"
+			android:name="com.galichfactory.souzgruz.activities.MainActivity" />
 	</application>
 
 </manifest>

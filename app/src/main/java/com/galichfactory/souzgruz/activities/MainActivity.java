@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.galichfactory.souzgruz.OffersUpdateService;
 import com.galichfactory.souzgruz.R;
 import com.galichfactory.souzgruz.fragments.CompletedOrdersFragment;
 import com.galichfactory.souzgruz.fragments.CurrentOrderFragment;
@@ -25,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
 	final CompletedOrdersFragment completedOrdersFragment = new CompletedOrdersFragment();
 	final FragmentManager fm = getSupportFragmentManager();
 	public static Fragment active;
-	
 	SharedPreferences preferences;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		active = offersFragment;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 		preferences.edit()
 			.clear()
 			.apply();
-		
+		stopService(new Intent(this, OffersUpdateService.class));
 		startActivity(new Intent(this, AuthActivity.class));
 		onStop();
 	}
