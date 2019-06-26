@@ -110,12 +110,14 @@ public class SecondAuthFragment extends Fragment {
                                             .commit();
                                 }
                                 else {
-	                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-		                                getContext().startForegroundService(new Intent(getContext(), OffersUpdateService.class));
+                                	try {
+		                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			                                getContext().startForegroundService(new Intent(getContext(), OffersUpdateService.class));
+		                                } else {
+			                                getContext().startService(new Intent(getContext(), OffersUpdateService.class));
+		                                }
 	                                }
-	                                else {
-		                                getContext().startService(new Intent(getContext(), OffersUpdateService.class));
-	                                }
+                                	catch (Exception ignored){}
                                     startActivity(new Intent(getContext(), MainActivity.class));
                                     ((AuthActivity)getActivity()).stop();
                                 }

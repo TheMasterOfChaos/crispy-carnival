@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.galichfactory.souzgruz.R;
 import com.galichfactory.souzgruz.adapters.MyOrdersAdapter;
 import com.galichfactory.souzgruz.specialClasses.Order;
+import com.galichfactory.souzgruz.specialClasses.OrderApplication;
 import com.galichfactory.souzgruz.specialClasses.Server;
 
 import java.util.ArrayList;
@@ -34,7 +35,10 @@ public class MyOrdersFragment extends Fragment {
 	
 	SwipeRefreshLayout refreshLayout;
 	List<Order> orderList = new ArrayList<>();
-	MyOrdersAdapter adapter;
+	List<Order> orderApplications = new ArrayList<>();
+
+	MyOrdersAdapter adapter,
+		applicationAdapter;
 	SwipeRefreshLayout.OnRefreshListener listener;
 	
 	
@@ -53,7 +57,6 @@ public class MyOrdersFragment extends Fragment {
 	}
 	
 	public void update() {
-		Log.wtf("tag", "update: ");
 		Call<List<Order>> getOrder = Server.api.getMyOrders(Server.driverID, Server.token);
 		getOrder.enqueue(new Callback<List<Order>>() {
 			@Override
@@ -75,12 +78,41 @@ public class MyOrdersFragment extends Fragment {
 				t.printStackTrace();
 			}
 		});
+
+		Call<List<OrderApplication>> getApplications = Server.api.getOrdersApplications(Server.token, Server.driverID);
+		getApplications.enqueue(new Callback<List<OrderApplication>>() {
+			@Override
+			public void onResponse(Call<List<OrderApplication>> call, @NonNull Response<List<OrderApplication>> response) {
+				orderApplications.clear();
+				for (OrderApplication order: response.body()) {
+					orderApplications.add(order.getOrder());
+
+				}
+
+				getActivity().runOnUiThread(() -> {
+					Log.d("OKHTTP", orderApplications.size() + "");
+
+					applicationAdapter.notifyDataSetChanged();
+				});
+			}
+
+			@Override
+			public void onFailure(Call<List<OrderApplication>> call, Throwable t) {
+				Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
+
+				t.printStackTrace();
+			}
+		});
+
+
 	}
 	
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		RecyclerView recyclerView = view.findViewById(R.id.my_orders_view);
+		RecyclerView recyclerView2 = view.findViewById(R.id.application_view);
+
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		refreshLayout =  view.findViewById(R.id.refresh);
 		refreshLayout.setColorSchemeResources(R.color.blueMiddle);
@@ -98,9 +130,11 @@ public class MyOrdersFragment extends Fragment {
 			public boolean cancel() {
 				return super.cancel();
 			}
-		},3000, 5000);
+		},1000, 5000);
 		refreshLayout.setOnRefreshListener(listener);
 		adapter = new MyOrdersAdapter(orderList);
+		applicationAdapter  = new MyOrdersAdapter(orderApplications);
+		recyclerView2.setAdapter(applicationAdapter);
 		recyclerView.setAdapter(adapter);
 		
 	}

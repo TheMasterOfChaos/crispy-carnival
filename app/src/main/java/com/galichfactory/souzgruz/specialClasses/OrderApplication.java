@@ -3,7 +3,7 @@ package com.galichfactory.souzgruz.specialClasses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class OrderApplication {
+public class OrderApplication  {
 	
 	@SerializedName("id")
 	@Expose
@@ -68,5 +68,13 @@ public class OrderApplication {
 	
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public Deliverer getDeliverer() {
+		return deliverer;
+	}
+
+	public void setDeliverer(Deliverer deliverer) {
+		this.deliverer = deliverer;
 	}
 }

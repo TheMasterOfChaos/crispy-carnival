@@ -30,7 +30,6 @@ public class Server {
 			.addInterceptor(interceptor);
 		retrofit = new Retrofit.Builder()
 			.baseUrl("http://176.53.160.19/api/") //Базовая часть адреса
-			//.baseUrl("http://requestbin.fullcontact.com/1eclwbd1/") //тестовый адрес
 			.addConverterFactory(GsonConverterFactory.create())
 			.client(client.build())//Конвертер, необходимый для преобразования JSON'а в объекты
 			.build();

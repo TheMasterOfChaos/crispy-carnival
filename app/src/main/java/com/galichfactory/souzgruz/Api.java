@@ -58,7 +58,12 @@ public interface Api {
 	@POST("order_application")
 	Call<String> getOrdersApplication(@Header("Authorization") String token,
 	                         @Body OrderApplication orderApplication);
-	
+
+	@Headers({"Content-Type: application/json"})
+	@GET("order_application?is_processing=1")
+	Call<List<OrderApplication>> getOrdersApplications(@Header("Authorization") String token,
+	                                  @Query("driver") int driver);
+
 	@Headers({"Content-Type: application/json"})
 	@GET("order/unapplied")
 	Call<List<Order>> getOrders(@Header("Authorization") String token);

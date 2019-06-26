@@ -73,7 +73,6 @@ public  class OffersUpdateService extends Service {
 		PendingIntent pendingIntent =
 			PendingIntent.getActivity(getApplicationContext(), 0, intentToRepeat,
 				PendingIntent.FLAG_CANCEL_CURRENT);
-		Log.d("tagtagtag", "run: 1234");
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
@@ -81,7 +80,6 @@ public  class OffersUpdateService extends Service {
 				Server.api.getOrders(Server.token).enqueue(new Callback<List<Order>>() {
 					@Override
 					public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-						Log.d("tagtagtag", "onResponse: " + response.body().size() + " " + orderList.size());
 						if(response.body().size() > orderList.size()){
 							NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"")
 								.setContentIntent(pendingIntent)
