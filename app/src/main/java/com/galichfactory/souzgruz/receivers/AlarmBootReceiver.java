@@ -13,10 +13,16 @@ public class AlarmBootReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		NotificationHelper.scheduleRepeatingRTCNotification(context);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			context.startForegroundService(new Intent(context, OffersUpdateService.class));
+			try {
+				context.startForegroundService(new Intent(context, OffersUpdateService.class));
+			}
+			catch (Exception e){}
 		}
 		else {
-			context.startService(new Intent(context, OffersUpdateService.class));
+			try {
+				context.startService(new Intent(context, OffersUpdateService.class));
+			}
+			catch (Exception e){}
 		}
 	}
 }

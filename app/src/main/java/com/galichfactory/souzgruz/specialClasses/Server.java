@@ -29,7 +29,7 @@ public class Server {
 		OkHttpClient.Builder client = new OkHttpClient.Builder()
 			.addInterceptor(interceptor);
 		retrofit = new Retrofit.Builder()
-			.baseUrl("http://176.53.160.19/api/") //Базовая часть адреса
+			.baseUrl("https://lk.szg.su/api/") //Базовая часть адреса
 			.addConverterFactory(GsonConverterFactory.create())
 			.client(client.build())//Конвертер, необходимый для преобразования JSON'а в объекты
 			.build();

@@ -49,8 +49,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			NotificationHelper.getNotificationManager(context).createNotificationChannel(channel);
 			builder.setChannelId(channelId);
 		}
-		Log.d("tagtagtag", "onReceive: ");
-		
+
 		return builder;
 	}
 }
