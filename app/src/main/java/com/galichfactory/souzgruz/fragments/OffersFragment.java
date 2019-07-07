@@ -81,7 +81,7 @@ public class OffersFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		refreshLayout.setRefreshing(true);
+		getActivity().runOnUiThread(() -> refreshLayout.setRefreshing(true));
 		listener.onRefresh();
 	}
 	
@@ -101,6 +101,7 @@ public class OffersFragment extends Fragment {
 			public void run() {
 				
 				update();
+
 				refreshLayout.setRefreshing(false);
 				this.cancel();
 			}
