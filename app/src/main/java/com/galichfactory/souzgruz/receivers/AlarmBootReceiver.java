@@ -7,11 +7,13 @@ import android.os.Build;
 
 import com.galichfactory.souzgruz.OffersUpdateService;
 import com.galichfactory.souzgruz.specialClasses.NotificationHelper;
+import com.galichfactory.souzgruz.specialClasses.Server;
 
 public class AlarmBootReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		NotificationHelper.scheduleRepeatingRTCNotification(context);
+		Server.getInstance();
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			try {
 				context.startForegroundService(new Intent(context, OffersUpdateService.class));

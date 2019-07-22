@@ -1,13 +1,19 @@
 package com.galichfactory.souzgruz.activities;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import com.galichfactory.souzgruz.OffersUpdateService;
@@ -31,8 +37,14 @@ public class MainActivity extends AppCompatActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
+		if (ContextCompat.checkSelfPermission(getApplicationContext(),
+				Manifest.permission.READ_CONTACTS)
+				!= PackageManager.PERMISSION_GRANTED) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+			}
+		}
 		setContentView(R.layout.activity_main);
 		active = offersFragment;
 		preferences = getSharedPreferences("user_data", MODE_PRIVATE);
@@ -86,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 	public void onBackPressed() {
 	}
 	
-	public void logout(View view) {
+	public void logout(View view) throws Exception {
 		preferences.edit()
 			.clear()
 			.apply();

@@ -1,10 +1,10 @@
 package com.galichfactory.souzgruz.specialClasses;
 
+
 import com.galichfactory.souzgruz.Api;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,17 +20,17 @@ public class Server {
 	public static void getInstance() {
 		if (ourInstance == null)
 			ourInstance = new Server();
+
 	}
 	
 	private Server() {
 		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 		interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-		
 		OkHttpClient.Builder client = new OkHttpClient.Builder()
 			.addInterceptor(interceptor);
 		retrofit = new Retrofit.Builder()
-			//.baseUrl("https://lk.szg.su/api/") //Базовая часть адрес
-			.baseUrl("http://176.53.160.19/api/") //Тестовый сервер
+			.baseUrl("https://lk.szg.su/api/") //Базовая часть адрес
+			//.baseUrl("http://176.53.160.19/api/") //Тестовый сервер
 			.addConverterFactory(GsonConverterFactory.create())
 			.client(client.build())//Конвертер, необходимый для преобразования JSON'а в объекты
 			.build();

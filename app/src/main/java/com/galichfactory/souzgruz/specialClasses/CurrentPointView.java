@@ -1,7 +1,7 @@
 package com.galichfactory.souzgruz.specialClasses;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 
 import android.widget.Button;
@@ -64,7 +64,7 @@ public class CurrentPointView extends ConstraintLayout {
 		call.enqueue(new Callback<List<Order>>() {
 			@Override
 			public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-				if(response.body().size() != 0){
+				if((response.body() != null ? response.body().size() : 0) != 0){
 					order = response.body().get(0);
 					if (order.getNextPoint() == order.getPoints().size())
 						changeButton();

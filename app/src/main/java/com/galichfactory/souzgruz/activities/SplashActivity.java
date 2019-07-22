@@ -3,7 +3,7 @@ package com.galichfactory.souzgruz.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.galichfactory.souzgruz.OffersUpdateService;
@@ -31,7 +31,12 @@ public class SplashActivity extends AppCompatActivity {
 			Server.id = preferences.getInt("id", 0);
 			Server.driverID = preferences.getInt("driver_id", 0);
 			NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext());
-			
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				startForegroundService(new Intent(this, OffersUpdateService.class));
+			}
+			else{
+				startService(new Intent(this, OffersUpdateService.class));
+			}
 			startActivity(new Intent(this, AuthActivity.class));
 		} else {
 			startActivity(new Intent(this, MainActivity.class));
