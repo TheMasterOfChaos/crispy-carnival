@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -186,17 +187,32 @@ public class CurrentPointView extends ConstraintLayout {
 			Call<ResponseBody> r = Server.api.nextPoint(id, Server.token);
 			button.setText("Уехал с точки");
 			button.setBackgroundResource(R.drawable.green_gradient);
-			button.setOnClickListener(v2 -> r.enqueue(new Callback<ResponseBody>() {
+			r.enqueue(new Callback<ResponseBody>() {
 				@Override
 				public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-					init();
+
 				}
-				
+
 				@Override
 				public void onFailure(Call<ResponseBody> call, Throwable t) {
 					Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
-				}
+				}});
+			r = Server.api.leavePoint(id, Server.token);
+			Call<ResponseBody> finalR = r;
+			button.setOnClickListener(view ->
+				finalR.enqueue(new Callback<ResponseBody>() {
+					@Override
+					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+						init();
+					}
+
+					@Override
+					public void onFailure(Call<ResponseBody> call, Throwable t) {
+						Toast.makeText(getContext(),"Нет сети",Toast.LENGTH_LONG).show();
+					}
+
 			}));
+
 		});
 	}
 	

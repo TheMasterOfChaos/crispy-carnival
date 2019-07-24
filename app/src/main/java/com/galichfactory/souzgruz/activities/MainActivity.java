@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			startForegroundService(new Intent(this, OffersUpdateService.class));
+		}
+		else{
+			startService(new Intent(this, OffersUpdateService.class));
+		}
 		if (ContextCompat.checkSelfPermission(getApplicationContext(),
 				Manifest.permission.READ_CONTACTS)
 				!= PackageManager.PERMISSION_GRANTED) {

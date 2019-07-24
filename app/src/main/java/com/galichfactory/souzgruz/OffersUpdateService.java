@@ -35,6 +35,8 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import okhttp3.ResponseBody;
+import okhttp3.internal.Version;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -171,46 +173,95 @@ public class OffersUpdateService extends Service {
 
 						}
 					});
-					LocationManager lm = (LocationManager)
-							getSystemService(Context.LOCATION_SERVICE);
-					if (lm != null) {
-						if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-							LocationListener locationListener = new LocationListener() {
-								@Override
-								public void onLocationChanged(final Location location) {
-									if (location != null) {
-										Server.api.postGeoPos(Server.token,
-												new GeoPoint(location.getLatitude(), location.getLongitude()));
-									}
-								}
 
-								@Override
-								public void onProviderDisabled(String provider) {}
-
-								@Override
-								public void onProviderEnabled(String provider) {}
-
-								@Override
-								public void onStatusChanged(String provider, int status, Bundle extras) {}
-							};
-							Log.d("runrunrun", "run: run");
-							Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-							if (location == null) {
-								location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-							}
-							if (location != null) {
-								Server.api.postGeoPos(Server.token,
-										new GeoPoint(location.getLatitude(), location.getLongitude()));
-							}
-
-							//lm.requestSingleUpdate(LocationManager.GPS_PROVIDER,  locationListener);
-						}
-
-
-					}
 
 				}
 			}, 1000, 60 * 1000);
+		}
+		LocationManager lm = (LocationManager)
+				getSystemService(Context.LOCATION_SERVICE);
+		if (lm != null) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+					LocationListener locationListener = new LocationListener() {
+						@Override
+						public void onLocationChanged(final Location location) {
+							Log.d("runrunrun", "run: run");
+							if (location != null) {
+								Log.d("runrunrun", "not null");
+								Server.api.postGeoPos(Server.token,
+										new GeoPoint(location.getLatitude(), location.getLongitude())).enqueue(new Callback<ResponseBody>() {
+									@Override
+									public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+									}
+
+									@Override
+									public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+									}
+								});
+							}
+							else Log.d("runrunrun", "onProviderDisabled: ");
+
+						}
+
+						@Override
+						public void onProviderDisabled(String provider) {
+
+						}
+
+						@Override
+						public void onProviderEnabled(String provider) {}
+
+						@Override
+						public void onStatusChanged(String provider, int status, Bundle extras) {}
+					};
+					lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+					lm.requestSingleUpdate (LocationManager.GPS_PROVIDER, locationListener, null);
+				}
+			} else {
+				LocationListener locationListener = new LocationListener() {
+					@Override
+					public void onLocationChanged(final Location location) {
+						Log.d("runrunrun", "run: run");
+						if (location != null) {
+							Log.d("runrunrun", "not null");
+							Server.api.postGeoPos(Server.token,
+									new GeoPoint(location.getLatitude(), location.getLongitude())).enqueue(new Callback<ResponseBody>() {
+								@Override
+								public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+								}
+
+								@Override
+								public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+								}
+							});
+						}
+						else Log.d("runrunrun", "onProviderDisabled: ");
+
+					}
+
+					@Override
+					public void onProviderDisabled(String provider) {
+
+					}
+
+					@Override
+					public void onProviderEnabled(String provider) {}
+
+					@Override
+					public void onStatusChanged(String provider, int status, Bundle extras) {}
+				};
+				lm.requestSingleUpdate (LocationManager.GPS_PROVIDER, locationListener, null);
+
+				lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+
+			}
+
+
 		}
 		super.onCreate();
 	}

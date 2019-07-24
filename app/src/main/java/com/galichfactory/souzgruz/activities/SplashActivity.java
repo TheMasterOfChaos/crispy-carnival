@@ -33,13 +33,9 @@ public class SplashActivity extends AppCompatActivity {
 			NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext());
 			startActivity(new Intent(this, AuthActivity.class));
 		} else {
+
 			startActivity(new Intent(this, MainActivity.class));
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				startForegroundService(new Intent(this, OffersUpdateService.class));
-			}
-			else{
-				startService(new Intent(this, OffersUpdateService.class));
-			}
+
 			Server.driverID = preferences.getInt("driver_id", 0);
 			Server.id = preferences.getInt("id", 0);
 			Server.token = " Token " + preferences.getString("token", "");

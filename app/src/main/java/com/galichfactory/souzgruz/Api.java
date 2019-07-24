@@ -83,6 +83,10 @@ public interface Api {
 	@POST("next_point")
 	Call<ResponseBody> nextPoint(@Body HashMap<String, String> id,
 	                             @Header("Authorization") String token);
+	@Headers({"Content-Type: application/json"})
+	@POST("leave_point")
+	Call<ResponseBody> leavePoint(@Body HashMap<String, String> id,
+	                             @Header("Authorization") String token);
 
 	@Headers({"Content-Type: application/json"})
 	@GET("order?is_current=1&is_finished=0&")
