@@ -1,5 +1,7 @@
 package com.galichfactory.souzgruz.specialClasses;
 
+import android.location.Location;
+
 public class GeoPoint {
 	//int order_id;
 	double latitude;
@@ -10,6 +12,11 @@ public class GeoPoint {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}*/
+
+	public GeoPoint(Location l) {
+		latitude = l.getLatitude();
+		longitude = l.getLongitude();
+	}
 
 	public GeoPoint(double latitude, double longitude) {
 		this.latitude = latitude;

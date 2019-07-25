@@ -46,6 +46,9 @@ public class OffersUpdateService extends Service {
 	static List<Order> orderList = new ArrayList<>();
 	static List<Order> acceptedOrderList = new ArrayList<>();
 	public static boolean status;
+	LocationManager lm;
+	LocationListener locationListener;
+
 
 	public OffersUpdateService() {
 	}
@@ -60,11 +63,52 @@ public class OffersUpdateService extends Service {
 
 		SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
 		if (!preferences.getBoolean("can_drive", false)) {
+			lm = (LocationManager)
+					getSystemService(Context.LOCATION_SERVICE);
 			Server.getInstance();
 			Server.token = " Token " + preferences.getString("token", "");
 			Server.id = preferences.getInt("id", 0);
 			Server.driverID = preferences.getInt("driver_id", 0);
+			if (lm != null) {
+				try {
+					locationListener = new LocationListener() {
+						@Override
+						public void onLocationChanged(final Location location) {
+							Log.d("runrunrun", "run: run");
+							if (location != null) {
+								Log.d("runrunrun", "not null");
+								Server.api.postGeoPos(Server.token,
+										new GeoPoint(location.getLatitude(), location.getLongitude())).enqueue(new Callback<ResponseBody>() {
+									@Override
+									public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+									}
+
+									@Override
+									public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+									}
+								});
+							} else Log.d("runrunrun", "onProviderDisabled: ");
+
+						}
+
+						@Override
+						public void onProviderDisabled(String provider) {
+
+						}
+
+						@Override
+						public void onProviderEnabled(String provider) {
+						}
+
+						@Override
+						public void onStatusChanged(String provider, int status, Bundle extras) {
+						}
+					};
+					lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 10, locationListener);
+				} catch (SecurityException e){e.printStackTrace();}
+			}
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				NotificationChannel androidChannel = new NotificationChannel("background",
 						"обновления", NotificationManager.IMPORTANCE_DEFAULT);
@@ -107,9 +151,23 @@ public class OffersUpdateService extends Service {
 					PendingIntent.getActivity(getApplicationContext(), 0, intentToRepeat,
 							PendingIntent.FLAG_CANCEL_CURRENT);
 			new Timer().scheduleAtFixedRate(new TimerTask() {
-				@RequiresApi(api = Build.VERSION_CODES.M)
 				@Override
 				public void run() {
+					try {
+						Server.api.postGeoPos(Server.token, new GeoPoint(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER))).enqueue(new Callback<ResponseBody>() {
+							@Override
+							public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+							}
+
+							@Override
+							public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+							}
+						});
+					}
+					catch (SecurityException e){e.printStackTrace();}
+					catch (NullPointerException e){e.printStackTrace();
 					if (status) onDestroy();
 					Server.api.getOrders(Server.token).enqueue(new Callback<List<Order>>() {
 						@Override
@@ -176,91 +234,7 @@ public class OffersUpdateService extends Service {
 
 
 				}
-			}, 1000, 60 * 1000);
-		}
-		LocationManager lm = (LocationManager)
-				getSystemService(Context.LOCATION_SERVICE);
-		if (lm != null) {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-				if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-					LocationListener locationListener = new LocationListener() {
-						@Override
-						public void onLocationChanged(final Location location) {
-							Log.d("runrunrun", "run: run");
-							if (location != null) {
-								Log.d("runrunrun", "not null");
-								Server.api.postGeoPos(Server.token,
-										new GeoPoint(location.getLatitude(), location.getLongitude())).enqueue(new Callback<ResponseBody>() {
-									@Override
-									public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-									}
-
-									@Override
-									public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-									}
-								});
-							}
-							else Log.d("runrunrun", "onProviderDisabled: ");
-
-						}
-
-						@Override
-						public void onProviderDisabled(String provider) {
-
-						}
-
-						@Override
-						public void onProviderEnabled(String provider) {}
-
-						@Override
-						public void onStatusChanged(String provider, int status, Bundle extras) {}
-					};
-					lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-					lm.requestSingleUpdate (LocationManager.GPS_PROVIDER, locationListener, null);
-				}
-			} else {
-				LocationListener locationListener = new LocationListener() {
-					@Override
-					public void onLocationChanged(final Location location) {
-						Log.d("runrunrun", "run: run");
-						if (location != null) {
-							Log.d("runrunrun", "not null");
-							Server.api.postGeoPos(Server.token,
-									new GeoPoint(location.getLatitude(), location.getLongitude())).enqueue(new Callback<ResponseBody>() {
-								@Override
-								public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-								}
-
-								@Override
-								public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-								}
-							});
-						}
-						else Log.d("runrunrun", "onProviderDisabled: ");
-
-					}
-
-					@Override
-					public void onProviderDisabled(String provider) {
-
-					}
-
-					@Override
-					public void onProviderEnabled(String provider) {}
-
-					@Override
-					public void onStatusChanged(String provider, int status, Bundle extras) {}
-				};
-				lm.requestSingleUpdate (LocationManager.GPS_PROVIDER, locationListener, null);
-
-				lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
-
-			}
-
+			}}, 1000, 30 * 1000);
 
 		}
 		super.onCreate();
