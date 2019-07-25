@@ -47,6 +47,7 @@ public class OffersUpdateService extends Service {
 	static List<Order> acceptedOrderList = new ArrayList<>();
 	public static boolean status;
 	LocationManager lm;
+	String TAG = "TAG";
 	LocationListener locationListener;
 
 
@@ -106,7 +107,8 @@ public class OffersUpdateService extends Service {
 						public void onStatusChanged(String provider, int status, Bundle extras) {
 						}
 					};
-					lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 10, locationListener);
+					Log.d(TAG, "onCreate: ");
+					lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, locationListener);
 				} catch (SecurityException e){e.printStackTrace();}
 			}
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
