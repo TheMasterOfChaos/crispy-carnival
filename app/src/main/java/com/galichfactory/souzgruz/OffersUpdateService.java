@@ -70,8 +70,8 @@ public class OffersUpdateService extends Service {
 			Server.token = " Token " + preferences.getString("token", "");
 			Server.id = preferences.getInt("id", 0);
 			Server.driverID = preferences.getInt("driver_id", 0);
-			if (lm != null) {
 				try {
+					Log.d(TAG, "onCreate: " + lm.getAllProviders().size());
 					locationListener = new LocationListener() {
 						@Override
 						public void onLocationChanged(final Location location) {
@@ -107,10 +107,10 @@ public class OffersUpdateService extends Service {
 						public void onStatusChanged(String provider, int status, Bundle extras) {
 						}
 					};
-					Log.d(TAG, "onCreate: ");
 					lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, locationListener);
+
+					Log.d(TAG, "onCreate: ");
 				} catch (SecurityException e){e.printStackTrace();}
-			}
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				NotificationChannel androidChannel = new NotificationChannel("background",
 						"обновления", NotificationManager.IMPORTANCE_DEFAULT);
@@ -147,7 +147,6 @@ public class OffersUpdateService extends Service {
 
 			Intent intentToRepeat = new Intent(getApplicationContext(), SplashActivity.class);
 			//настроим флаг для перезапуска приложения
-
 			intentToRepeat.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			PendingIntent pendingIntent =
 					PendingIntent.getActivity(getApplicationContext(), 0, intentToRepeat,
@@ -236,7 +235,7 @@ public class OffersUpdateService extends Service {
 
 
 				}
-			}}, 1000, 30 * 1000);
+			}}, 5000, 30 * 1000);
 
 		}
 		super.onCreate();
