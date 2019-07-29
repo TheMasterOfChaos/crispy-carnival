@@ -102,8 +102,7 @@ public class OffersFragment extends Fragment {
 			public void run() {
 				
 				update();
-
-				refreshLayout.setRefreshing(false);
+				getActivity().runOnUiThread(() -> refreshLayout.setRefreshing(false));
 				this.cancel();
 			}
 			
