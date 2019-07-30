@@ -185,7 +185,7 @@ public class OffersUpdateService extends Service {
 									NotificationChannel channel = new NotificationChannel(
 											channelId,
 											"orders",
-											NotificationManager.IMPORTANCE_DEFAULT);
+											NotificationManager.IMPORTANCE_HIGH);
 									NotificationHelper.getNotificationManager(getApplicationContext()).createNotificationChannel(channel);
 									builder.setChannelId(channelId);
 								}
@@ -216,7 +216,7 @@ public class OffersUpdateService extends Service {
 									NotificationChannel channel = new NotificationChannel(
 											channelId,
 											"orders",
-											NotificationManager.IMPORTANCE_DEFAULT);
+											NotificationManager.IMPORTANCE_HIGH);
 									NotificationHelper.getNotificationManager(getApplicationContext()).createNotificationChannel(channel);
 									builder.setChannelId(channelId);
 								}

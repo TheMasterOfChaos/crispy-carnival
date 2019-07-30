@@ -85,13 +85,14 @@ public class MyOrdersFragment extends Fragment {
 			public void onResponse(Call<List<OrderApplication>> call, @NonNull Response<List<OrderApplication>> response) {
 				orderApplications.clear();
 				for (OrderApplication order: response.body()) {
+					Log.d("tagtag", "onResponse: " + order.getOrder().getHours());
 					orderApplications.add(order.getOrder());
 
 				}
+				Log.d("tagtag", "onResponse: " + orderApplications.size());
 
-				getActivity().runOnUiThread(() -> {
-					applicationAdapter.notifyDataSetChanged();
-				});
+
+				getActivity().runOnUiThread(() -> applicationAdapter.notifyDataSetChanged());
 			}
 
 			@Override
@@ -110,7 +111,7 @@ public class MyOrdersFragment extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 		RecyclerView recyclerView = view.findViewById(R.id.my_orders_view);
 		RecyclerView recyclerView2 = view.findViewById(R.id.application_view);
-
+		recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		refreshLayout =  view.findViewById(R.id.refresh);
 		refreshLayout.setColorSchemeResources(R.color.blueMiddle);
