@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "279095780132",
+    "firebase_url": "https://souzgruz-f2857.firebaseio.com",
+    "project_id": "souzgruz-f2857",
+    "storage_bucket": "souzgruz-f2857.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279095780132:android:8d51ab4ccf7999e2",
+        "android_client_info": {
+          "package_name": "com.galichfactory.souzgruz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279095780132-7t4mnnga10rho6dhii4bgmcf96lhlagk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFwDgoK4JGoDEynul8ZA7LhBFohaMd-WU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279095780132-7t4mnnga10rho6dhii4bgmcf96lhlagk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

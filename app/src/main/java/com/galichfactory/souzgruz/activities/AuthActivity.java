@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.galichfactory.souzgruz.OffersUpdateService;
 import com.galichfactory.souzgruz.R;
 import com.galichfactory.souzgruz.fragments.FirstAuthFragment;
 import com.galichfactory.souzgruz.fragments.ThirdAuthFragment;
@@ -31,7 +32,17 @@ public class AuthActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+		Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+			preferences.edit()
+					.clear()
+					.apply();
+			try {
+				stopService(new Intent(this, OffersUpdateService.class));
+			}
+			catch (Exception ignored){}
+			thread.interrupt();
+			finishAffinity();
+		});		preferences = getSharedPreferences("user_data", MODE_PRIVATE);
 		setContentView(R.layout.activity_auth);
 		if (!preferences.contains("id")){
 			fm.beginTransaction().add(R.id.authContainer, firstFragment).commit();

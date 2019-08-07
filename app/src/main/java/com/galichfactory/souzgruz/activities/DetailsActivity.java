@@ -1,5 +1,6 @@
 package com.galichfactory.souzgruz.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.galichfactory.souzgruz.OffersUpdateService;
 import com.galichfactory.souzgruz.R;
 import com.galichfactory.souzgruz.adapters.AlertVehicleAdapter;
 import com.galichfactory.souzgruz.adapters.DetailOrderAdapter;
@@ -76,6 +78,17 @@ public class DetailsActivity extends AppCompatActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+			preferences.edit()
+					.clear()
+					.apply();
+			try {
+				stopService(new Intent(this, OffersUpdateService.class));
+			}
+			catch (Exception ignored){}
+			thread.interrupt();
+			finishAffinity();
+		});
 		int orderId = getIntent().getIntExtra("order", 0);
 		int type = getIntent().getIntExtra("type", 0);
 		super.onCreate(savedInstanceState);
