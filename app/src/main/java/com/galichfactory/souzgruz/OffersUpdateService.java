@@ -151,7 +151,7 @@ public class OffersUpdateService extends Service {
 			PendingIntent pendingIntent =
 					PendingIntent.getActivity(getApplicationContext(), 0, intentToRepeat,
 							PendingIntent.FLAG_CANCEL_CURRENT);
-			new Timer().scheduleAtFixedRate(new TimerTask() {
+			/*new Timer().scheduleAtFixedRate(new TimerTask() {
 				@Override
 				public void run() {
 					try {
@@ -235,7 +235,7 @@ public class OffersUpdateService extends Service {
 
 
 				}
-			}}, 5000, 30 * 1000);
+			}}, 5000, 30 * 1000);*/
 
 		}
 		super.onCreate();

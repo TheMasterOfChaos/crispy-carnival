@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.galichfactory.souzgruz.R;
+import com.galichfactory.souzgruz.activities.DetailsActivity;
 import com.galichfactory.souzgruz.adapters.MyOrdersAdapter;
 import com.galichfactory.souzgruz.specialClasses.Order;
 import com.galichfactory.souzgruz.specialClasses.Server;
@@ -30,15 +32,16 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class CompletedOrdersFragment extends Fragment {
-	List<Order> orderList;
-	MyOrdersAdapter adapter;
-	int sum;
-	TextView sumtv;
+	private List<Order> orderList;
+	private MyOrdersAdapter adapter;
+	private int sum;
+	private TextView sumtv,
+		staticTv;
+	private ImageView img;
 	
 	
 	
 	public CompletedOrdersFragment() {
-		// Required empty public constructor
 	}
 	
 	
@@ -61,18 +64,20 @@ public class CompletedOrdersFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		sumtv = view.findViewById(R.id.tvMoneySum);
+		staticTv = view.findViewById(R.id.tvMoneySumStatic);
+		img = view.findViewById(R.id.imageView4);
+
 		RecyclerView recyclerView = view.findViewById(R.id.completed_orders_view);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		orderList = new ArrayList<>();
 		update();
 		
-		adapter = new MyOrdersAdapter(orderList);
+		adapter = new MyOrdersAdapter(orderList, DetailsActivity.COMPLETED);
 		recyclerView.setAdapter(adapter);
 	}
 	
 	public void update() {
 		sum = 0;
-		Log.wtf("tag", "update: ");
 		SharedPreferences preferences = getContext()
 			.getSharedPreferences("user_data", MODE_PRIVATE);
 		Call<List<Order>> getOrder = Server.api
@@ -82,10 +87,24 @@ public class CompletedOrdersFragment extends Fragment {
 			public void onResponse(Call<List<Order>> call, @NonNull Response<List<Order>> response) {
 				orderList.clear();
 				for (Order order: response.body()) {
-					sum += Float.valueOf(order.getCostDeliverer()).intValue();
+					if (order.getCostDeliverer() != null)
+						sum += Float.valueOf(order.getCostDeliverer()).intValue();
 					orderList.add(order);
 				}
 				sumtv.setText(sum + " \u20BD");
+				try{
+					if (orderList.get(0).getCostDeliverer() == null)
+					{
+						img.setVisibility(View.GONE);
+						sumtv.setVisibility(View.GONE);
+						staticTv.setVisibility(View.GONE);
+					}
+				}
+				catch (Exception ignored){
+					img.setVisibility(View.GONE);
+					sumtv.setVisibility(View.GONE);
+					staticTv.setVisibility(View.GONE);
+				}
 				adapter.notifyDataSetChanged();
 			}
 			

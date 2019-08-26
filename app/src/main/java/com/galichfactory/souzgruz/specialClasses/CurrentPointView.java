@@ -118,8 +118,18 @@ public class CurrentPointView extends ConstraintLayout {
 		phone.setText(pointList.get(i).getPhoneNumber());
 		name.setText(order.getCustomer().getName());
 		notes.setText(order.getComment());
-		price.setText(order.getCostDeliverer() + "\u20BD");
-		pointsCount.setText(order.getPoints().size() + "");
+		if (order.getCustomer().getPaymentType() == 1) {
+			if (order.getCostDelivererVat() != null) {
+				price.setText(order.getCostDelivererVat() + " \u20BD");
+			}
+			else price.setText("");
+		}
+		else{
+			if (order.getCostDeliverer() != null) {
+				price.setText(order.getCostDeliverer() + " \u20BD");
+			}
+			else price.setText("");
+		}		pointsCount.setText(order.getPoints().size() + "");
 		cargoName.setText(cargo.getName());
 		button.setBackgroundResource(R.drawable.red_gradient);
 		
@@ -178,7 +188,18 @@ public class CurrentPointView extends ConstraintLayout {
 		phone.setText(pointList.get(i).getPhoneNumber());
 		name.setText(order.getCustomer().getName());
 		notes.setText(order.getComment());
-		price.setText(order.getCostDeliverer() + "\u20BD");
+		if (order.getCustomer().getPaymentType() == 1) {
+			if (order.getCostDelivererVat() != null) {
+				price.setText(order.getCostDelivererVat() + " \u20BD");
+			}
+			else price.setText("");
+		}
+		else{
+			if (order.getCostDeliverer() != null) {
+				price.setText(order.getCostDeliverer() + " \u20BD");
+			}
+			else price.setText("");
+		}
 		pointsCount.setText(order.getPoints().size() + "");
 		cargoName.setText(cargo.getName());
 		button.setOnClickListener(v ->{

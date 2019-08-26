@@ -20,6 +20,7 @@ public class FullDetailOrderAdapter extends RecyclerView.Adapter<FullDetailOrder
 	Order order;
 	List<Point> pointList;
 	Cargo cargo;
+
 	
 	public FullDetailOrderAdapter(Order order, List<Point> pointList, Cargo cargo) {
 		this.pointList = pointList;

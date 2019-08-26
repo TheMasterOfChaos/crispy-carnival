@@ -1,12 +1,16 @@
 package com.galichfactory.souzgruz;
 
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.media.RingtoneManager;
+import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import com.galichfactory.souzgruz.specialClasses.NotificationHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -24,10 +28,18 @@ public class FirebasePushService extends FirebaseMessagingService {
 				.setSmallIcon(R.mipmap.ic_launcher)
 				.setAutoCancel(true);
 
-		NotificationManager notificationManager =
-				(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-		notificationManager.notify(0, notificationBuilder.build());
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			String channelId = "second";
+			NotificationChannel channel = new NotificationChannel(
+					channelId,
+					"Заказы",
+					NotificationManager.IMPORTANCE_HIGH);
+			NotificationHelper.getNotificationManager(getApplicationContext()).createNotificationChannel(channel);
+			notificationBuilder.setChannelId(channelId);
+		}
+		((NotificationManager) getApplicationContext().
+				getSystemService(Context.NOTIFICATION_SERVICE)).
+				notify(0, notificationBuilder.build());
 		super.onMessageReceived(remoteMessage);
 	}
 }

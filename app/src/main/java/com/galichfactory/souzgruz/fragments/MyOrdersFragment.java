@@ -7,14 +7,15 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.galichfactory.souzgruz.R;
+import com.galichfactory.souzgruz.activities.DetailsActivity;
 import com.galichfactory.souzgruz.adapters.MyOrdersAdapter;
+import com.galichfactory.souzgruz.adapters.MyOrdersApplicationsAdapter;
 import com.galichfactory.souzgruz.specialClasses.Order;
 import com.galichfactory.souzgruz.specialClasses.OrderApplication;
 import com.galichfactory.souzgruz.specialClasses.Server;
@@ -35,23 +36,22 @@ public class MyOrdersFragment extends Fragment {
 	
 	SwipeRefreshLayout refreshLayout;
 	List<Order> orderList = new ArrayList<>();
-	List<Order> orderApplications = new ArrayList<>();
+	List<Order> orders = new ArrayList<>();
+	List<OrderApplication> orderApplications = new ArrayList<>();
 
-	MyOrdersAdapter adapter,
-		applicationAdapter;
+	MyOrdersAdapter adapter;
+	MyOrdersAdapter applicationAdapter;
 	SwipeRefreshLayout.OnRefreshListener listener;
 	
 	
 	
 	public MyOrdersFragment() {
-		// Required empty public constructor
 	}
 	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
 		update();
 		return inflater.inflate(R.layout.fragment_my_orders, container, false);
 	}
@@ -84,14 +84,13 @@ public class MyOrdersFragment extends Fragment {
 			@Override
 			public void onResponse(Call<List<OrderApplication>> call, @NonNull Response<List<OrderApplication>> response) {
 				orderApplications.clear();
-				for (OrderApplication order: response.body()) {
-					Log.d("tagtag", "onResponse: " + order.getOrder().getHours());
-					orderApplications.add(order.getOrder());
-
+				orders.clear();
+				orderApplications.addAll(response.body());
+				for (OrderApplication orderApplication: orderApplications) {
+					Order order =orderApplication.getOrder();
+					order.setAppId(orderApplication.getId());
+					orders.add(order);
 				}
-				Log.d("tagtag", "onResponse: " + orderApplications.size());
-
-
 				getActivity().runOnUiThread(() -> applicationAdapter.notifyDataSetChanged());
 			}
 
@@ -110,8 +109,8 @@ public class MyOrdersFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		RecyclerView recyclerView = view.findViewById(R.id.my_orders_view);
-		RecyclerView recyclerView2 = view.findViewById(R.id.application_view);
-		recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
+		RecyclerView applicationView = view.findViewById(R.id.application_view);
+		applicationView.setLayoutManager(new LinearLayoutManager(getContext()));
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		refreshLayout =  view.findViewById(R.id.refresh);
 		refreshLayout.setColorSchemeResources(R.color.blueMiddle);
@@ -119,7 +118,6 @@ public class MyOrdersFragment extends Fragment {
 			
 			@Override
 			public void run() {
-				
 				update();
 				getActivity().runOnUiThread(() ->refreshLayout.setRefreshing(false));
 				this.cancel();
@@ -130,14 +128,15 @@ public class MyOrdersFragment extends Fragment {
 				return super.cancel();
 			}
 		},1000, 5000);
+
 		refreshLayout.setOnRefreshListener(listener);
-		adapter = new MyOrdersAdapter(orderList);
-		applicationAdapter  = new MyOrdersAdapter(orderApplications);
-		recyclerView2.setAdapter(applicationAdapter);
+		adapter = new MyOrdersAdapter(orderList, DetailsActivity.ACCEPTED);
+		applicationAdapter  = new MyOrdersAdapter(orders, DetailsActivity.REQUEST);
+		applicationView.setAdapter(applicationAdapter);
 		recyclerView.setAdapter(adapter);
 		
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();

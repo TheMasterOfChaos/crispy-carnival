@@ -6,8 +6,8 @@ android {
         applicationId "com.galichfactory.souzgruz"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 12
-        versionName "1.1.2"
+        versionCode 17
+        versionName "1.17"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

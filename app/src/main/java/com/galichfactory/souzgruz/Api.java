@@ -6,6 +6,7 @@ import com.galichfactory.souzgruz.specialClasses.GeoPoint;
 import com.galichfactory.souzgruz.specialClasses.Order;
 import com.galichfactory.souzgruz.specialClasses.OrderApplication;
 import com.galichfactory.souzgruz.specialClasses.PhoneNumber;
+import com.galichfactory.souzgruz.specialClasses.RegID;
 import com.galichfactory.souzgruz.specialClasses.SMSRequest;
 import com.galichfactory.souzgruz.specialClasses.SMSResponse;
 import com.galichfactory.souzgruz.specialClasses.User;
@@ -17,9 +18,11 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -54,6 +57,11 @@ public interface Api {
 	@POST("order_application")
 	Call<String> changeOrder(@Header("Authorization") String token,
 	                         @Body OrderApplication orderApplication);
+
+	@Headers({"Content-Type: application/json"})
+	@DELETE("order_application/{id}")
+	Call<String> deleteOrder(@Header("Authorization") String token,
+	                         @Path("id") int id);
 
 	@Headers({"Content-Type: application/json"})
 	@POST("order_application")
@@ -103,4 +111,9 @@ public interface Api {
 	@POST("geo/point")
 	Call<ResponseBody> postGeoPos(@Header("Authorization") String token,
 	                              @Body GeoPoint geoPoint);
+
+	@Headers({"Content-Type: application/json"})
+	@PATCH("user/registration_id")
+	Call<ResponseBody> addRegID(@Header("Authorization") String token,
+	                            @Body RegID regID);
 }

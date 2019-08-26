@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
@@ -35,7 +36,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"")
 				.setContentIntent(pendingIntent)
 				.setContentText("Не забывайте нас")
-				.setSmallIcon(R.mipmap.ic_launcher)
+				.setSmallIcon(R.mipmap.icon)
+				.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
 				.setContentTitle("Доброе утро!")
 				.setAutoCancel(true);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -44,7 +46,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			NotificationChannel channel = new NotificationChannel(
 				channelId,
 				"morning",
-				NotificationManager.IMPORTANCE_DEFAULT);
+				NotificationManager.IMPORTANCE_HIGH);
 			NotificationHelper.getNotificationManager(context).createNotificationChannel(channel);
 			builder.setChannelId(channelId);
 		}

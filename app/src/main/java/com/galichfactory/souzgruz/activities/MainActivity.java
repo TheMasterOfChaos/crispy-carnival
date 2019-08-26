@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.galichfactory.souzgruz.specialClasses.RegID;
+import com.galichfactory.souzgruz.specialClasses.Server;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +32,11 @@ import com.galichfactory.souzgruz.fragments.MyOrdersFragment;
 import com.galichfactory.souzgruz.fragments.OffersFragment;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -67,10 +74,19 @@ public class MainActivity extends AppCompatActivity {
 
 					// Get new Instance ID token
 					String token = task.getResult().getToken();
+					Server.api.addRegID(Server.token, new RegID(token)).enqueue(new Callback<ResponseBody>() {
+						@Override
+						public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+						}
+
+						@Override
+						public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+						}
+					});
 					// Log and toast
 					Log.d("tag", token);
-					Toast.makeText(getApplicationContext(), token, Toast.LENGTH_SHORT).show();
 				});
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			startForegroundService(new Intent(this, OffersUpdateService.class));
@@ -79,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 			startService(new Intent(this, OffersUpdateService.class));
 		}
 		if (ContextCompat.checkSelfPermission(getApplicationContext(),
-				Manifest.permission.READ_CONTACTS)
+				Manifest.permission.ACCESS_FINE_LOCATION)
 				!= PackageManager.PERMISSION_GRANTED) {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 				requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);

@@ -36,11 +36,17 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
     public void onBindViewHolder(@NonNull OffersViewHolder viewHolder, int i) {
         viewHolder.address.setText(orders.get(i).getPoints().get(0).getLocation());
         viewHolder.date.setText(TimeFormater.format(orders.get(i).getBeginDateTime()));
-        try {
-            viewHolder.price.setText(orders.get(i).getCostDeliverer() + " \u20BD");
+        if (orders.get(i).getCustomer().getPaymentType() == 1) {
+            if (orders.get(i).getCostDelivererVat() != null) {
+                viewHolder.price.setText(orders.get(i).getCostDelivererVat() + " \u20BD");
+            }
+            else viewHolder.price.setText("");
         }
-        catch (NullPointerException e){
-            viewHolder.price.setText("");
+        else{
+            if (orders.get(i).getCostDeliverer() != null) {
+                viewHolder.price.setText(orders.get(i).getCostDeliverer() + " \u20BD");
+            }
+            else viewHolder.price.setText("");
         }
         viewHolder.title.setText(orders.get(i).getCargo().getName());
 
@@ -64,9 +70,8 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
 
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
-                Log.wtf("tag", "OffersViewHolder: " + position);
                 Intent i = new Intent(itemView.getContext(), DetailsActivity.class);
-                i.putExtra("type", 0);
+                i.putExtra("type", DetailsActivity.APPLICATION);
                 i.putExtra("order", orders.get(position).getId());
                 itemView.getContext().startActivity(i);
             });

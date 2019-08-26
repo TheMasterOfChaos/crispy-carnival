@@ -73,9 +73,12 @@ public class Order {
     @SerializedName("region_type")
     @Expose
     private Integer regionType;
-    @SerializedName("cost_deliverer")
+    @SerializedName("cost_deliverer_no_vat")
     @Expose
     private String costDeliverer;
+    @SerializedName("cost_deliverer_vat")
+    @Expose
+    private String costDelivererVat;
     @SerializedName("additional_hour_cost_deliverer")
     @Expose
     private String additionalHourCostDeliverer;
@@ -94,6 +97,7 @@ public class Order {
     @SerializedName("comment")
     @Expose
     private String comment;
+    private Integer appId;
     
     public void setOrder(Order order) {
         this.id = order.id;
@@ -123,6 +127,7 @@ public class Order {
         this.status = order.status;
         this.hours = order.hours;
         this.comment = order.comment;
+        this.costDelivererVat = order.costDelivererVat;
     }
     
     
@@ -343,4 +348,19 @@ public class Order {
         this.comment = comment;
     }
 
+    public String getCostDelivererVat() {
+        return costDelivererVat;
+    }
+
+    public void setCostDelivererVat(String costDelivererVat) {
+        this.costDelivererVat = costDelivererVat;
+    }
+
+    public Integer getAppId() {
+        return appId;
+    }
+
+    public void setAppId(int appId) {
+        this.appId = appId;
+    }
 }

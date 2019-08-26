@@ -130,7 +130,7 @@
         android:id="@+id/tvPaymentMethod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="17dp"
         android:text="Способ Оплаты"
         android:textColor="@color/blueLight"
         android:textSize="@dimen/description"
@@ -184,5 +184,26 @@
         app:layout_constraintStart_toEndOf="@+id/tvCardMethod"
         app:layout_constraintTop_toTopOf="@+id/tvCashMethod"
         app:srcCompat="@drawable/ic_cash_grey" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Тип ТС:"
+        android:textColor="@color/blueLight"
+        android:textSize="@dimen/description"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateStatic" />
+
+    <TextView
+        android:id="@+id/tvTS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Машынка"
+        android:textColor="@color/blueMiddle"
+        android:textSize="@dimen/description"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
