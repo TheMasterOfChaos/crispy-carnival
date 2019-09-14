@@ -131,43 +131,43 @@
 		android:textSize="@dimen/description"
 		app:layout_constraintStart_toStartOf="@+id/guideline5"
 		app:layout_constraintTop_toBottomOf="@+id/tvNotes" />
-	
+
 	<TextView
 		android:id="@+id/tvWidthStatic"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
 		android:includeFontPadding="false"
-		
-		android:text="Ширина"
+
+		android:text="Высота"
 		android:textColor="@color/blueLight"
 		android:textSize="@dimen/description"
 		app:layout_constraintStart_toEndOf="@+id/tvMassStatic"
 		app:layout_constraintTop_toTopOf="@+id/tvMassStatic" />
-	
+
 	<TextView
 		android:id="@+id/tvLengthStatic"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
 		android:layout_marginTop="12dp"
-		
+
 		android:includeFontPadding="false"
-		android:text="Длина"
+		android:text="Ширина"
 		android:textColor="@color/blueLight"
 		android:textSize="@dimen/description"
 		app:layout_constraintStart_toEndOf="@+id/tvHeightStatic"
 		app:layout_constraintTop_toBottomOf="@+id/tvNotes" />
-	
+
 	<TextView
 		android:id="@+id/tvHeightStatic"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		
+
 		android:layout_marginStart="8dp"
 		android:layout_marginTop="12dp"
 		android:includeFontPadding="false"
-		android:text="Высота"
+		android:text="Длина"
 		android:textColor="@color/blueLight"
 		android:textSize="@dimen/description"
 		app:layout_constraintStart_toEndOf="@+id/tvWidthStatic"
@@ -187,7 +187,7 @@
 		app:layout_constraintTop_toBottomOf="@+id/tvMassStatic" />
 	
 	<TextView
-		android:id="@+id/tvWidth"
+		android:id="@+id/tvHeight"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:includeFontPadding="false"
@@ -200,7 +200,7 @@
 		app:layout_constraintTop_toBottomOf="@+id/tvWidthStatic" />
 	
 	<TextView
-		android:id="@+id/tvHeight"
+		android:id="@+id/tvLength"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:includeFontPadding="false"
@@ -213,7 +213,7 @@
 		app:layout_constraintTop_toBottomOf="@+id/tvHeightStatic" />
 	
 	<TextView
-		android:id="@+id/tvLength"
+		android:id="@+id/tvWidth"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="16dp"

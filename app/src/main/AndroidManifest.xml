@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	package="com.galichfactory.souzgruz">
+	package="su.szg.driverapp">
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -24,7 +24,7 @@
 		>
 
 		<service
-			android:name="com.galichfactory.souzgruz.FirebasePushService"
+			android:name="su.szg.driverapp.FirebasePushService"
 			android:exported="false">
 			<intent-filter>
 				<action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -32,10 +32,10 @@
 		</service>
 
 		<service
-			android:name="com.galichfactory.souzgruz.OffersUpdateService" />
+			android:name="su.szg.driverapp.OffersUpdateService" />
 		
-		<receiver android:name="com.galichfactory.souzgruz.receivers.AlarmReceiver" />
-		<receiver android:name="com.galichfactory.souzgruz.receivers.AlarmBootReceiver">
+		<receiver android:name="su.szg.driverapp.receivers.AlarmReceiver" />
+		<receiver android:name="su.szg.driverapp.receivers.AlarmBootReceiver">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 				<action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -46,10 +46,10 @@
 		
 		<activity
 			android:screenOrientation="portrait"
-			android:name="com.galichfactory.souzgruz.activities.AuthActivity" />
+			android:name="su.szg.driverapp.activities.AuthActivity" />
 		<activity
 			android:screenOrientation="portrait"
-			android:name="com.galichfactory.souzgruz.activities.SplashActivity"
+			android:name="su.szg.driverapp.activities.SplashActivity"
 			android:theme="@style/Splash">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -59,9 +59,9 @@
 		</activity>
 		<activity
 			android:screenOrientation="portrait"
-			android:name="com.galichfactory.souzgruz.activities.DetailsActivity" />
+			android:name="su.szg.driverapp.activities.DetailsActivity" />
 		<activity android:screenOrientation="portrait"
-			android:name="com.galichfactory.souzgruz.activities.MainActivity" />
+			android:name="su.szg.driverapp.activities.MainActivity" />
 	</application>
 
 </manifest>

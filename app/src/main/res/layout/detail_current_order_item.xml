@@ -188,7 +188,7 @@
         android:layout_marginStart="8dp"
         android:includeFontPadding="false"
 
-        android:text="Ширина"
+        android:text="Высота"
         android:textColor="@color/blueLight"
         android:textSize="@dimen/description"
         app:layout_constraintStart_toEndOf="@+id/tvMassStatic"
@@ -201,7 +201,7 @@
         android:layout_marginStart="8dp"
         android:includeFontPadding="false"
 
-        android:text="Длина"
+        android:text="Ширина"
         android:textColor="@color/blueLight"
         android:textSize="@dimen/description"
         app:layout_constraintStart_toEndOf="@+id/tvHeightStatic"
@@ -214,7 +214,7 @@
 
         android:layout_marginStart="8dp"
         android:includeFontPadding="false"
-        android:text="Высота"
+        android:text="Длина"
         android:textColor="@color/blueLight"
         android:textSize="@dimen/description"
         app:layout_constraintStart_toEndOf="@+id/tvWidthStatic"
@@ -234,7 +234,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvMassStatic" />
 
     <TextView
-        android:id="@+id/tvWidth"
+        android:id="@+id/tvHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
@@ -245,19 +245,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tvWidthStatic"
         app:layout_constraintTop_toBottomOf="@+id/tvWidthStatic" />
-
-    <TextView
-        android:id="@+id/tvHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-
-        android:text="0.5мм"
-        android:textColor="@color/blueMiddle"
-        android:textSize="@dimen/main_info"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/tvHeightStatic"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeightStatic" />
 
     <TextView
         android:id="@+id/tvLength"
@@ -273,6 +260,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvLengthStatic"
         app:layout_constraintTop_toBottomOf="@+id/tvLengthStatic" />
+
+    <TextView
+        android:id="@+id/tvWidth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+
+        android:text="0.5мм"
+        android:textColor="@color/blueMiddle"
+        android:textSize="@dimen/main_info"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvHeightStatic"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeightStatic" />
+
+
 
     <View
         android:id="@+id/divider"

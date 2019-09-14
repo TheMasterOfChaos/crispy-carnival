@@ -5,7 +5,7 @@
     android:id="@+id/fragmentOne"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.galichfactory.souzgruz.activities.AuthActivity">
+    tools:context="su.szg.driverapp.activities.AuthActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
